@@ -1,4 +1,4 @@
-package ai2017.groupn;
+package ai2017.group1;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import negotiator.parties.NegotiationInfo;
 /**
  * This is your negotiation party.
  */
-public class Groupn extends AbstractNegotiationParty {
+public class Group1 extends AbstractNegotiationParty {
 
 	private Bid lastReceivedBid = null;
 
