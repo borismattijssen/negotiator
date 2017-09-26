@@ -1,0 +1,5 @@
+1,1,0.0055248618784530384,RandomParty@0,(Offer  bid:Bid[Food: Catering, Drinks: Handmade Cocktails, Location: Party Tent, Invitations: Photo, Music: MP3, Cleanup: Water and Soap, ])
+1,2,0.0055248618784530384,Group1@1,(Offer  bid:Bid[Food: Catering, Drinks: Non-Alcoholic, Location: Party Room, Invitations: Custom, Handmade, Music: MP3, Cleanup: Special Equiment, ])
+2,1,0.011049723756906077,RandomParty@0,(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Catering, Location: Your Dorm, Invitations: Custom, Printed, Music: DJ, Cleanup: Hired Help, ])
+2,2,0.011049723756906077,Group1@1,(Accept  bid:Bid[Food: Chips and Nuts, Drinks: Catering, Location: Your Dorm, Invitations: Custom, Printed, Music: DJ, Cleanup: Hired Help, ])
+agreement,Bid[Food: Chips and Nuts, Drinks: Catering, Location: Your Dorm, Invitations: Custom, Printed, Music: DJ, Cleanup: Hired Help, ],0.5791666666666667,0.36389559956712203

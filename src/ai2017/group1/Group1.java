@@ -15,7 +15,8 @@ import negotiator.parties.NegotiationInfo;
  */
 public class Group1 extends AbstractNegotiationParty {
 
-	private Bid lastReceivedBid = null;
+	private Bid optimal = null;
+	private boolean doAccept = false;
 
 	@Override
 	public void init(NegotiationInfo info) {
@@ -24,6 +25,12 @@ public class Group1 extends AbstractNegotiationParty {
 
 		System.out.println("Discount Factor is " + info.getUtilitySpace().getDiscountFactor());
 		System.out.println("Reservation Value is " + info.getUtilitySpace().getReservationValueUndiscounted());
+
+		try {
+			optimal = info.getUtilitySpace().getMaxUtilityBid();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// if you need to initialize some variables, please initialize them
 		// below
@@ -41,14 +48,10 @@ public class Group1 extends AbstractNegotiationParty {
 	 */
 	@Override
 	public Action chooseAction(List<Class<? extends Action>> validActions) {
-
-		// with 50% chance, counter offer
-		// if we are the first party, also offer.
-		if (lastReceivedBid == null || !validActions.contains(Accept.class) || Math.random() > 0.5) {
-			return new Offer(getPartyId(), generateRandomBid());
-		} else {
-			return new Accept(getPartyId(), lastReceivedBid);
+		if (doAccept && validActions.contains(Accept.class)) {
+			return new Accept(this.getPartyId(), optimal);
 		}
+		return new Offer(this.getPartyId(), optimal);
 	}
 
 	/**
@@ -64,14 +67,17 @@ public class Group1 extends AbstractNegotiationParty {
 	@Override
 	public void receiveMessage(AgentID sender, Action action) {
 		super.receiveMessage(sender, action);
-		if (action instanceof Offer) {
-			lastReceivedBid = ((Offer) action).getBid();
+		if (action instanceof Accept) {
+			Accept acc = (Accept) action;
+			if (acc.getBid().equals(optimal)) {
+				doAccept = true;
+			}
 		}
 	}
 
 	@Override
 	public String getDescription() {
-		return "example party group N";
+		return "example party group 1";
 	}
 
 }

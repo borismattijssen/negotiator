@@ -1,0 +1,4 @@
+1,1,0.0055248618784530384,Group1@0,(Offer  bid:Bid[Food: Catering, Drinks: Catering, Location: Your Dorm, Invitations: Photo, Music: Band, Cleanup: Specialized Materials, ])
+1,2,0.0055248618784530384,RandomParty@1,(Offer  bid:Bid[Food: Catering, Drinks: Catering, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Special Equiment, ])
+2,1,0.011049723756906077,Group1@0,(Accept  bid:Bid[Food: Catering, Drinks: Catering, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Special Equiment, ])
+agreement,Bid[Food: Catering, Drinks: Catering, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Special Equiment, ],0.5316666666666667,0.5701102371715266
