@@ -1,4 +1,4 @@
-package ai2017;
+package ai2017.group1;
 
 import java.util.List;
 
