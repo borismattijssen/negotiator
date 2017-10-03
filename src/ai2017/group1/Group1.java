@@ -1,27 +1,29 @@
 package ai2017.group1;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import ai2017.group1.boa.acceptance.AC_Next;
 import ai2017.group1.boa.bidding.TimeDependent_Offering;
 import ai2017.group1.boa.opponent.BestBid;
+import ai2017.group1.boa.opponent.HardHeadedFrequencyModel;
 import negotiator.AgentID;
 import negotiator.Bid;
 import negotiator.actions.Accept;
 import negotiator.actions.Action;
+import negotiator.actions.EndNegotiation;
 import negotiator.actions.Offer;
-
-import negotiator.timeline.TimeLineInfo;
-import negotiator.utility.AbstractUtilitySpace;
-
+import negotiator.bidding.BidDetails;
+import negotiator.boaframework.Actions;
 import negotiator.boaframework.NegotiationSession;
 import negotiator.boaframework.SessionData;
 import negotiator.parties.AbstractNegotiationParty;
 import negotiator.parties.NegotiationInfo;
+import misc.Pair;
+import negotiator.timeline.TimeLineInfo;
+import negotiator.utility.AbstractUtilitySpace;
 
-import ai2017.group1.boa.opponent.HardHeadedFrequencyModel;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -29,108 +31,111 @@ import ai2017.group1.boa.opponent.HardHeadedFrequencyModel;
  */
 public class Group1 extends AbstractNegotiationParty {
 
-	private Bid optimal = null;
-	private boolean doAccept = false;
-
-	private HardHeadedFrequencyModel opponentModel;
-	private BestBid opponentModelStrategy;
-	private TimeDependent_Offering offeringStrategy;
-	private AC_Next acceptanceStrategy;
+	protected AC_Next acceptConditions;
+	protected TimeDependent_Offering offeringStrategy;
+	protected HardHeadedFrequencyModel opponentModel;
+	protected BestBid omStrategy;
+	protected NegotiationSession negotiationSession;
+	private Bid oppBid;
 
 	@Override
 	public void init(NegotiationInfo info) {
 
 		super.init(info);
 
-		System.out.println("Discount Factor is " + info.getUtilitySpace().getDiscountFactor());
-		System.out.println("Reservation Value is " + info.getUtilitySpace().getReservationValueUndiscounted());
+		this.negotiationSession = new NegotiationSession(new SessionData(), this.utilitySpace, this.timeline);
+		this.initStrategies();
+	}
 
+	private void initStrategies() {
 		try {
-			optimal = info.getUtilitySpace().getMaxUtilityBid();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		TimeLineInfo timeline = this.getTimeLine();
-		AbstractUtilitySpace utilitySpace = this.getUtilitySpace();
-		SessionData sessionData = new SessionData();
-		NegotiationSession negotiationSession = new NegotiationSession(sessionData, utilitySpace, timeline);
-
-		Map<String, Double> parameters = new HashMap<String, Double>() {{
-			put("l", 0.1);
-			put("t", 1.1);
-			put("e", 1.0);
-			put("k", 0.0);
-			put("a", 1.0);
-			put("b", 0.0);
-		}};
-
-		opponentModel = new HardHeadedFrequencyModel();
-		opponentModelStrategy = new BestBid();
-		offeringStrategy = new TimeDependent_Offering();
-		acceptanceStrategy = new AC_Next();
-
-		opponentModel.init(negotiationSession, parameters);
-		opponentModelStrategy.init(negotiationSession, opponentModel, parameters);
-
-		try {
-			offeringStrategy.init(negotiationSession, opponentModel, opponentModelStrategy, parameters);
-			acceptanceStrategy.init(negotiationSession, offeringStrategy, opponentModel, parameters);
-		} catch (Exception e) {
-			e.printStackTrace();
+			opponentModel = new HardHeadedFrequencyModel();
+			omStrategy = new BestBid();
+			offeringStrategy = new TimeDependent_Offering();
+			acceptConditions = new AC_Next();
+			Map<String, Double> parameters = new HashMap<String, Double>() {{
+				put("l", 0.1);
+				put("t", 1.1);
+				put("e", 1.0);
+				put("k", 0.0);
+				put("a", 1.0);
+				put("b", 0.0);
+			}};
+			this.opponentModel.init(this.negotiationSession, parameters);
+			this.omStrategy.init(this.negotiationSession, this.opponentModel, parameters);
+			this.offeringStrategy.init(this.negotiationSession, this.opponentModel, this.omStrategy, parameters);
+			this.acceptConditions.init(this.negotiationSession, this.offeringStrategy, this.opponentModel, parameters);
+		} catch (Exception var2) {
+			var2.printStackTrace();
 		}
 	}
 
-	/**
-	 * Each round this method gets called and ask you to accept or offer. The
-	 * first party in the first round is a bit different, it can only propose an
-	 * offer.
-	 *
-	 * @param validActions
-	 *            Either a list containing both accept and offer or only offer.
-	 * @return The chosen action.
-	 */
-	@Override
-	public Action chooseAction(List<Class<? extends Action>> validActions) {
-		if (doAccept && validActions.contains(Accept.class)) {
-			return new Accept(this.getPartyId(), optimal);
-		}
-		return new Offer(this.getPartyId(), optimal);
-	}
+    public void receiveMessage(AgentID sender, Action opponentAction) {
+        if (opponentAction instanceof Offer) {
+            this.oppBid = ((Offer)opponentAction).getBid();
 
-	/**
-	 * All offers proposed by the other parties will be received as a message.
-	 * You can use this information to your advantage, for example to predict
-	 * their utility.
-	 *
-	 * @param sender
-	 *            The party that did the action. Can be null.
-	 * @param action
-	 *            The action that party did.
-	 */
-	@Override
-	public void receiveMessage(AgentID sender, Action action) {
-		super.receiveMessage(sender, action);
+            try {
+                BidDetails opponentBid = new BidDetails(this.oppBid, this.negotiationSession.getUtilitySpace().getUtility(this.oppBid), this.negotiationSession.getTime());
+                this.negotiationSession.getOpponentBidHistory().add(opponentBid);
+            } catch (Exception var4) {
+                var4.printStackTrace();
+            }
 
-		if (action instanceof Accept) {
-			Accept accept = (Accept) action;
-		}
-		else if (action instanceof Bid) {
-			Bid bid = (Bid) action;
+            if (this.opponentModel != null) {
+                if (this.omStrategy.canUpdateOM()) {
+                    this.opponentModel.updateModel(this.oppBid);
+                } else if (!this.opponentModel.isCleared()) {
+                    this.opponentModel.cleanUp();
+                }
+            }
+        }
 
-			opponentModel.updateModel(bid, this.timeline.getTime());
-		}
-		else {
-			System.out.println(action);
-		}
+    }
 
-//		if (action instanceof Accept) {
-//			Accept acc = (Accept) action;
-//			if (acc.getBid().equals(optimal)) {
-//				doAccept = true;
-//			}
-//		}
-	}
+    public Action chooseAction(List<Class<? extends Action>> possibleActions) {
+        BidDetails bid;
+        if (this.negotiationSession.getOwnBidHistory().getHistory().isEmpty()) {
+            bid = this.offeringStrategy.determineOpeningBid();
+        } else {
+            bid = this.offeringStrategy.determineNextBid();
+            if (this.offeringStrategy.isEndNegotiation()) {
+                return new EndNegotiation(this.getPartyId());
+            }
+        }
+
+        if (bid == null) {
+            System.out.println("Error in code, null bid was given");
+            return new Accept(this.getPartyId(), this.oppBid);
+        } else {
+            this.offeringStrategy.setNextBid(bid);
+            Actions decision = Actions.Reject;
+            if (!this.negotiationSession.getOpponentBidHistory().getHistory().isEmpty()) {
+                decision = this.acceptConditions.determineAcceptability();
+            }
+
+            if (decision.equals(Actions.Break)) {
+                System.out.println("send EndNegotiation");
+                return new EndNegotiation(this.getPartyId());
+            } else if (decision.equals(Actions.Reject)) {
+                this.negotiationSession.getOwnBidHistory().add(bid);
+                return new Offer(this.getPartyId(), bid.getBid());
+            } else {
+                return new Accept(this.getPartyId(), this.oppBid);
+            }
+        }
+    }
+//
+//    public void endSession(NegotiationResult result) {
+//        this.offeringStrategy.endSession(result);
+//        this.acceptConditions.endSession(result);
+//        this.opponentModel.endSession(result);
+//        SessionData savedData = this.negotiationSession.getSessionData();
+//        if (!savedData.isEmpty() && savedData.isChanged()) {
+//            savedData.changesCommitted();
+//            this.getData().put(savedData);
+//        }
+//
+//    }
 
 	@Override
 	public String getDescription() {
