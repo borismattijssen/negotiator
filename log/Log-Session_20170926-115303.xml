@@ -4,6 +4,6 @@
 </resultsOfAgent>
 <resultsOfAgent finalUtility="0.43241457513409964" agentClass="negotiator.parties.RandomParty2" utilspace="etc/templates/partydomain/party2_utility.xml" discountedUtility="0.43241457513409964" agent="RandomParty2@3" discount="1.0" agentDesc="Random party">
 </resultsOfAgent>
-<resultsOfAgent finalUtility="0.9999999999999999" agentClass="ai2017.group1.Group1" utilspace="etc/templates/partydomain/party3_utility.xml" discountedUtility="0.9999999999999999" agent="Group1@4" discount="1.0" agentDesc="example party group N">
+<resultsOfAgent finalUtility="0.9999999999999999" agentClass="ai2017.group1.Group1_old" utilspace="etc/templates/partydomain/party3_utility.xml" discountedUtility="0.9999999999999999" agent="Group1@4" discount="1.0" agentDesc="example party group N">
 </resultsOfAgent>
 </NegotiationOutcome></Session>
