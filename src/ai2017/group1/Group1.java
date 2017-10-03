@@ -1,14 +1,28 @@
 package ai2017.group1;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import ai2017.group1.boa.acceptance.AC_Next;
+import ai2017.group1.boa.bidding.TimeDependent_Offering;
+import ai2017.group1.boa.opponent.BestBid;
 import negotiator.AgentID;
 import negotiator.Bid;
 import negotiator.actions.Accept;
 import negotiator.actions.Action;
 import negotiator.actions.Offer;
+
+import negotiator.timeline.TimeLineInfo;
+import negotiator.utility.AbstractUtilitySpace;
+
+import negotiator.boaframework.NegotiationSession;
+import negotiator.boaframework.SessionData;
 import negotiator.parties.AbstractNegotiationParty;
 import negotiator.parties.NegotiationInfo;
+
+import ai2017.group1.boa.opponent.HardHeadedFrequencyModel;
+
 
 /**
  * This is your negotiation party.
@@ -17,6 +31,11 @@ public class Group1 extends AbstractNegotiationParty {
 
 	private Bid optimal = null;
 	private boolean doAccept = false;
+
+	private HardHeadedFrequencyModel opponentModel;
+	private BestBid opponentModelStrategy;
+	private TimeDependent_Offering offeringStrategy;
+	private AC_Next acceptanceStrategy;
 
 	@Override
 	public void init(NegotiationInfo info) {
@@ -32,9 +51,34 @@ public class Group1 extends AbstractNegotiationParty {
 			e.printStackTrace();
 		}
 
-		// if you need to initialize some variables, please initialize them
-		// below
+		TimeLineInfo timeline = this.getTimeLine();
+		AbstractUtilitySpace utilitySpace = this.getUtilitySpace();
+		SessionData sessionData = new SessionData();
+		NegotiationSession negotiationSession = new NegotiationSession(sessionData, utilitySpace, timeline);
 
+		Map<String, Double> parameters = new HashMap<String, Double>() {{
+			put("l", 0.1);
+			put("t", 1.1);
+			put("e", 1.0);
+			put("k", 0.0);
+			put("a", 1.0);
+			put("b", 0.0);
+		}};
+
+		opponentModel = new HardHeadedFrequencyModel();
+		opponentModelStrategy = new BestBid();
+		offeringStrategy = new TimeDependent_Offering();
+		acceptanceStrategy = new AC_Next();
+
+		opponentModel.init(negotiationSession, parameters);
+		opponentModelStrategy.init(negotiationSession, opponentModel, parameters);
+
+		try {
+			offeringStrategy.init(negotiationSession, opponentModel, opponentModelStrategy, parameters);
+			acceptanceStrategy.init(negotiationSession, offeringStrategy, opponentModel, parameters);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -67,12 +111,25 @@ public class Group1 extends AbstractNegotiationParty {
 	@Override
 	public void receiveMessage(AgentID sender, Action action) {
 		super.receiveMessage(sender, action);
+
 		if (action instanceof Accept) {
-			Accept acc = (Accept) action;
-			if (acc.getBid().equals(optimal)) {
-				doAccept = true;
-			}
+			Accept accept = (Accept) action;
 		}
+		else if (action instanceof Bid) {
+			Bid bid = (Bid) action;
+
+			opponentModel.updateModel(bid, this.timeline.getTime());
+		}
+		else {
+			System.out.println(action);
+		}
+
+//		if (action instanceof Accept) {
+//			Accept acc = (Accept) action;
+//			if (acc.getBid().equals(optimal)) {
+//				doAccept = true;
+//			}
+//		}
 	}
 
 	@Override
