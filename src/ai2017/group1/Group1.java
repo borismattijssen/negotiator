@@ -56,7 +56,7 @@ public class Group1 extends AbstractNegotiationParty {
 			Map<String, Double> parameters = new HashMap<String, Double>() {{
 				put("l", 0.1);
 				put("t", 1.1);
-				put("e", 1.0);
+				put("e", 3.0);
 				put("k", 0.0);
 				put("a", 1.0);
 				put("b", 0.0);
@@ -71,8 +71,16 @@ public class Group1 extends AbstractNegotiationParty {
 	}
 
     public void receiveMessage(AgentID sender, Action opponentAction) {
-        if (opponentAction instanceof Offer) {
-            this.oppBid = ((Offer)opponentAction).getBid();
+	    super.receiveMessage(sender, opponentAction);
+	    if (getNumberOfParties() != -1) {
+            opponentModel.setNoOfOpponents(getNumberOfParties() - 1);
+        }
+        if (opponentAction instanceof Offer || opponentAction instanceof Accept) {
+            if (opponentAction instanceof Offer) {
+                this.oppBid = ((Offer) opponentAction).getBid();
+            } else {
+                this.oppBid = ((Accept) opponentAction).getBid();
+            }
 
             try {
                 BidDetails opponentBid = new BidDetails(this.oppBid, this.negotiationSession.getUtilitySpace().getUtility(this.oppBid), this.negotiationSession.getTime());
