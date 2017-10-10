@@ -46,6 +46,9 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 	private int learnValueAddition;
 	private int amountOfIssues;
 
+	private int noOfOpponents = -1;
+	private AdditiveUtilitySpace[] opponentUtilitySpaces;
+
 	/**
 	 * Initializes the utility space of the opponent such that all value issue
 	 * weights are equal.
@@ -60,26 +63,29 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 			learnCoef = 0.2;
 		}
 		learnValueAddition = 1;
-		initializeModel();
 	}
 
-	private void initializeModel() {
-		opponentUtilitySpace = new AdditiveUtilitySpace(negotiationSession.getDomain());
-		amountOfIssues = opponentUtilitySpace.getDomain().getIssues().size();
-		double commonWeight = 1D / (double) amountOfIssues;
+	private void initializeUtilitySpaces() {
+	    opponentUtilitySpaces = new AdditiveUtilitySpace[noOfOpponents];
+		for (int i = 0; i < noOfOpponents; i++) {
+			opponentUtilitySpaces[i] = new AdditiveUtilitySpace(negotiationSession.getDomain());
+			// @TODO kinda redundant, could fix this
+			amountOfIssues = opponentUtilitySpaces[i].getDomain().getIssues().size();
+			double commonWeight = 1D / (double) amountOfIssues;
 
-		// initialize the weights
-		for (Entry<Objective, Evaluator> e : opponentUtilitySpace.getEvaluators()) {
-			// set the issue weights
-			opponentUtilitySpace.unlock(e.getKey());
-			e.getValue().setWeight(commonWeight);
-			try {
-				// set all value weights to one (they are normalized when
-				// calculating the utility)
-				for (ValueDiscrete vd : ((IssueDiscrete) e.getKey()).getValues())
-					((EvaluatorDiscrete) e.getValue()).setEvaluation(vd, 1);
-			} catch (Exception ex) {
-				ex.printStackTrace();
+			// initialize the weights
+			for (Entry<Objective, Evaluator> e : opponentUtilitySpaces[i].getEvaluators()) {
+				// set the issue weights
+				opponentUtilitySpaces[i].unlock(e.getKey());
+				e.getValue().setWeight(commonWeight);
+				try {
+					// set all value weights to one (they are normalized when
+					// calculating the utility)
+					for (ValueDiscrete vd : ((IssueDiscrete) e.getKey()).getValues())
+						((EvaluatorDiscrete) e.getValue()).setEvaluation(vd, 1);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
 			}
 		}
 	}
@@ -95,11 +101,11 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 	 *            bid
 	 * @return
 	 */
-	private HashMap<Integer, Integer> determineDifference(BidDetails first, BidDetails second) {
+	private HashMap<Integer, Integer> determineDifference(int oppoNo, BidDetails first, BidDetails second) {
 
 		HashMap<Integer, Integer> diff = new HashMap<Integer, Integer>();
 		try {
-			for (Issue i : opponentUtilitySpace.getDomain().getIssues()) {
+			for (Issue i : opponentUtilitySpaces[oppoNo].getDomain().getIssues()) {
 				diff.put(i.getNumber(), (((ValueDiscrete) first.getBid().getValue(i.getNumber()))
 						.equals((ValueDiscrete) second.getBid().getValue(i.getNumber()))) ? 0 : 1);
 			}
@@ -115,15 +121,19 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 	 */
 	@Override
 	public void updateModel(Bid opponentBid, double time) {
-		if (negotiationSession.getOpponentBidHistory().size() < 2) {
+		if (noOfOpponents == -1) {
+			return;
+		}
+		if (negotiationSession.getOpponentBidHistory().size() < noOfOpponents + 1) {
 			return;
 		}
 		int numberOfUnchanged = 0;
+		int oppoNo = (negotiationSession.getOpponentBidHistory().size() - 1) % noOfOpponents;
 		BidDetails oppBid = negotiationSession.getOpponentBidHistory().getHistory()
 				.get(negotiationSession.getOpponentBidHistory().size() - 1);
 		BidDetails prevOppBid = negotiationSession.getOpponentBidHistory().getHistory()
-				.get(negotiationSession.getOpponentBidHistory().size() - 2);
-		HashMap<Integer, Integer> lastDiffSet = determineDifference(prevOppBid, oppBid);
+				.get(negotiationSession.getOpponentBidHistory().size() - (noOfOpponents + 1));
+		HashMap<Integer, Integer> lastDiffSet = determineDifference(oppoNo, prevOppBid, oppBid);
 
 		// count the number of changes in value
 		for (Integer i : lastDiffSet.keySet()) {
@@ -143,18 +153,18 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 
 		// re-weighing issues while making sure that the sum remains 1
 		for (Integer i : lastDiffSet.keySet()) {
-			if (lastDiffSet.get(i) == 0 && opponentUtilitySpace.getWeight(i) < maximumWeight)
-				opponentUtilitySpace.setWeight(opponentUtilitySpace.getDomain().getObjectives().get(i),
-						(opponentUtilitySpace.getWeight(i) + goldenValue) / totalSum);
+			if (lastDiffSet.get(i) == 0 && opponentUtilitySpaces[oppoNo].getWeight(i) < maximumWeight)
+				opponentUtilitySpaces[oppoNo].setWeight(opponentUtilitySpaces[oppoNo].getDomain().getObjectives().get(i),
+						(opponentUtilitySpaces[oppoNo].getWeight(i) + goldenValue) / totalSum);
 			else
-				opponentUtilitySpace.setWeight(opponentUtilitySpace.getDomain().getObjectives().get(i),
-						opponentUtilitySpace.getWeight(i) / totalSum);
+				opponentUtilitySpaces[oppoNo].setWeight(opponentUtilitySpaces[oppoNo].getDomain().getObjectives().get(i),
+						opponentUtilitySpaces[oppoNo].getWeight(i) / totalSum);
 		}
 
 		// Then for each issue value that has been offered last time, a constant
 		// value is added to its corresponding ValueDiscrete.
 		try {
-			for (Entry<Objective, Evaluator> e : opponentUtilitySpace.getEvaluators()) {
+			for (Entry<Objective, Evaluator> e : opponentUtilitySpaces[oppoNo].getEvaluators()) {
 				// cast issue to discrete and retrieve value. Next, add constant
 				// learnValueAddition to the current preference of the value to
 				// make
@@ -171,13 +181,18 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 
 	@Override
 	public double getBidEvaluation(Bid bid) {
-		double result = 0;
+	    if (noOfOpponents == -1) {
+	    	return 0;
+		}
+		double total = 0;
 		try {
-			result = opponentUtilitySpace.getUtility(bid);
+			for (int i = 0; i < noOfOpponents; i++) {
+				total += opponentUtilitySpaces[i].getUtility(bid);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return total/noOfOpponents;
 	}
 
 	@Override
@@ -191,5 +206,14 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 		set.add(new BOAparameter("l", 0.2,
 				"The learning coefficient determines how quickly the issue weights are learned"));
 		return set;
+	}
+
+	public int getNoOfOpponents() {
+		return noOfOpponents;
+	}
+
+	public void setNoOfOpponents(int noOfOpponents) {
+		this.noOfOpponents = noOfOpponents;
+		initializeUtilitySpaces();
 	}
 }
