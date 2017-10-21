@@ -20,7 +20,7 @@ public class BayesianModel extends OpponentModel {
 
 	private int startingBidIssue = 0;
 	private int noOfOpponents = -1;
-	private BayesianOpponentModel[] models;
+	private BayesianOpponentModel[] models; // Single bayesian model for each opponent
 
 	public BayesianModel() {
 	}
@@ -47,7 +47,7 @@ public class BayesianModel extends OpponentModel {
 		try {
 			ValueDiscrete e = (ValueDiscrete)bid.getValue(i);
 			return true;
-		} catch (Exception var4) {
+		} catch (Exception ex) {
 			return false;
 		}
 	}
@@ -97,9 +97,10 @@ public class BayesianModel extends OpponentModel {
 		initializeOpponentModels();
 	}
 
-//	public double getWeight(Issue issue) {
-//		return this.models.getNormalizedWeight(issue, this.startingBidIssue);
-//	}
+	// Todo: Doesnt work because it should be multi opponent
+	public double getWeight(Issue issue) {
+		return this.models[0].getNormalizedWeight(issue, this.startingBidIssue);
+	}
 
 	public AdditiveUtilitySpace getOpponentUtilitySpace(int opponent) {
 		return new OpponentModelUtilSpace(this.models[opponent]);

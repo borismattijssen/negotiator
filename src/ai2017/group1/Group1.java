@@ -18,11 +18,7 @@ import negotiator.boaframework.OpponentModel;
 import negotiator.boaframework.SessionData;
 import negotiator.parties.AbstractNegotiationParty;
 import negotiator.parties.NegotiationInfo;
-import misc.Pair;
-import negotiator.timeline.TimeLineInfo;
-import negotiator.utility.AbstractUtilitySpace;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

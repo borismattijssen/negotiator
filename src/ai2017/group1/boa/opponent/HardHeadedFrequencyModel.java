@@ -135,6 +135,8 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 				numberOfUnchanged++;
 		}
 
+		System.out.println(numberOfUnchanged);
+
 		// This is the value to be added to weights of unchanged issues before
 		// normalization.
 		// Also the value that is taken as the minimum possible weight,
@@ -186,7 +188,7 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 				total += opponentUtilitySpaces[i].getUtility(bid);
 			}
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 		}
 		return total/noOfOpponents;
 	}

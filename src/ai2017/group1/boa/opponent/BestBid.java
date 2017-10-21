@@ -76,8 +76,6 @@ public class BestBid extends OMStrategyMulti {
 			// TODO: Make ready for multi opponent model. What to do with different evals?
 			for (int i = 0; i < models.length; i++) {
 				evaluation = models[i].getBidEvaluation(bid.getBid());
-
-				System.out.println("Model " + i + ": " + evaluation);
 			}
 
 			if (evaluation > 0.0001) {
