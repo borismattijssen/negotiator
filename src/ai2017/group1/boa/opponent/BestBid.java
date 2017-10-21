@@ -87,6 +87,7 @@ public class BestBid extends OMStrategy {
 			Random r = new Random();
 			return allBids.get(r.nextInt(allBids.size()));
 		}
+
 		return bestBid;
 	}
 

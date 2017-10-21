@@ -94,12 +94,6 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 	 * Determines the difference between bids. For each issue, it is determined
 	 * if the value changed. If this is the case, a 1 is stored in a hashmap for
 	 * that issue, else a 0.
-	 * 
-	 * @param a
-	 *            bid of the opponent
-	 * @param another
-	 *            bid
-	 * @return
 	 */
 	private HashMap<Integer, Integer> determineDifference(int oppoNo, BidDetails first, BidDetails second) {
 
@@ -153,12 +147,14 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 
 		// re-weighing issues while making sure that the sum remains 1
 		for (Integer i : lastDiffSet.keySet()) {
-			if (lastDiffSet.get(i) == 0 && opponentUtilitySpaces[oppoNo].getWeight(i) < maximumWeight)
-				opponentUtilitySpaces[oppoNo].setWeight(opponentUtilitySpaces[oppoNo].getDomain().getObjectives().get(i),
-						(opponentUtilitySpaces[oppoNo].getWeight(i) + goldenValue) / totalSum);
-			else
-				opponentUtilitySpaces[oppoNo].setWeight(opponentUtilitySpaces[oppoNo].getDomain().getObjectives().get(i),
-						opponentUtilitySpaces[oppoNo].getWeight(i) / totalSum);
+			double newWeight = 1.0;
+			if (lastDiffSet.get(i) == 0 && opponentUtilitySpaces[oppoNo].getWeight(i) < maximumWeight) {
+				newWeight = (opponentUtilitySpaces[oppoNo].getWeight(i) + goldenValue) / totalSum;
+			}
+			else {
+				newWeight= opponentUtilitySpaces[oppoNo].getWeight(i) / totalSum;
+			}
+			opponentUtilitySpaces[oppoNo].setWeight(opponentUtilitySpaces[oppoNo].getDomain().getObjectives().get(i), newWeight);
 		}
 
 		// Then for each issue value that has been offered last time, a constant
@@ -190,7 +186,7 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 				total += opponentUtilitySpaces[i].getUtility(bid);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return total/noOfOpponents;
 	}
