@@ -14,6 +14,7 @@ import negotiator.actions.Offer;
 import negotiator.bidding.BidDetails;
 import negotiator.boaframework.Actions;
 import negotiator.boaframework.NegotiationSession;
+import negotiator.boaframework.OpponentModel;
 import negotiator.boaframework.SessionData;
 import negotiator.parties.AbstractNegotiationParty;
 import negotiator.parties.NegotiationInfo;
@@ -68,12 +69,15 @@ public class Group1 extends AbstractNegotiationParty {
 			}};
 			this.omFrequency.init(this.negotiationSession, parameters);
 			this.omBayesian.init(this.negotiationSession, parameters);
-			this.omStrategy.init(this.negotiationSession, this.omFrequency, parameters);
 
-			this.offeringStrategy.init(this.negotiationSession, this.omFrequency, this.omStrategy, parameters);
-			this.acceptConditions.init(this.negotiationSession, this.offeringStrategy, this.omFrequency, parameters);
-		} catch (Exception var2) {
-			var2.printStackTrace();
+			OpponentModel[] oppoModels = new OpponentModel[] {this.omFrequency, this.omBayesian};
+
+			this.omStrategy.init(this.negotiationSession, oppoModels , parameters);
+			this.offeringStrategy.init(this.negotiationSession, oppoModels, this.omStrategy, parameters);
+			this.acceptConditions.init(this.negotiationSession, this.offeringStrategy, oppoModels, parameters);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 

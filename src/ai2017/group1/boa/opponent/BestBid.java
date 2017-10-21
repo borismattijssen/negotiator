@@ -6,10 +6,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import ai2017.group1.boa.framework.OMStrategyMulti;
 import negotiator.bidding.BidDetails;
 import negotiator.boaframework.BOAparameter;
 import negotiator.boaframework.NegotiationSession;
-import negotiator.boaframework.OMStrategy;
 import negotiator.boaframework.OpponentModel;
 
 /**
@@ -18,7 +18,7 @@ import negotiator.boaframework.OpponentModel;
  * used to select the best bid.
  * 
  */
-public class BestBid extends OMStrategy {
+public class BestBid extends OMStrategyMulti {
 
 	/**
 	 * when to stop updating the opponentmodel. Note that this value is not
@@ -40,8 +40,8 @@ public class BestBid extends OMStrategy {
 	 *            set of parameters for this opponent model strategy.
 	 */
 	@Override
-	public void init(NegotiationSession negotiationSession, OpponentModel model, Map<String, Double> parameters) {
-		super.init(negotiationSession, model, parameters);
+	public void init(NegotiationSession negotiationSession, OpponentModel[] models, Map<String, Double> parameters) {
+		super.init(negotiationSession, models, parameters);
 		if (parameters.get("t") != null) {
 			updateThreshold = parameters.get("t").doubleValue();
 		} else {
@@ -52,9 +52,7 @@ public class BestBid extends OMStrategy {
 	/**
 	 * Returns the best bid for the opponent given a set of similarly preferred
 	 * bids.
-	 * 
-	 * @param list
-	 *            of the bids considered for offering.
+	 *
 	 * @return bid to be offered to opponent.
 	 */
 	@Override
@@ -73,7 +71,15 @@ public class BestBid extends OMStrategy {
 		boolean allWereZero = true;
 		// 3. Determine the best bid
 		for (BidDetails bid : allBids) {
-			double evaluation = model.getBidEvaluation(bid.getBid());
+			double evaluation = 0;
+
+			// TODO: Make ready for multi opponent model. What to do with different evals?
+			for (int i = 0; i < models.length; i++) {
+				evaluation = models[i].getBidEvaluation(bid.getBid());
+
+				System.out.println("Model " + i + ": " + evaluation);
+			}
+
 			if (evaluation > 0.0001) {
 				allWereZero = false;
 			}

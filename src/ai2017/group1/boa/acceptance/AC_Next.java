@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import ai2017.group1.boa.framework.AcceptanceStrategyMulti;
+import ai2017.group1.boa.framework.OfferingStrategyMulti;
 import negotiator.boaframework.AcceptanceStrategy;
 import negotiator.boaframework.Actions;
 import negotiator.boaframework.BOAparameter;
@@ -19,7 +21,7 @@ import negotiator.boaframework.OpponentModel;
  * T. Baarslag, K. Hindriks, M. Hendrikx, A. Dirkzwager, C.M. Jonker
  * 
  */
-public class AC_Next extends AcceptanceStrategy {
+public class AC_Next extends AcceptanceStrategyMulti {
 
 	private double a;
 	private double b;
@@ -30,7 +32,7 @@ public class AC_Next extends AcceptanceStrategy {
 	public AC_Next() {
 	}
 
-	public AC_Next(NegotiationSession negoSession, OfferingStrategy strat, double alpha, double beta) {
+	public AC_Next(NegotiationSession negoSession, OfferingStrategyMulti strat, double alpha, double beta) {
 		this.negotiationSession = negoSession;
 		this.offeringStrategy = strat;
 		this.a = alpha;
@@ -38,7 +40,7 @@ public class AC_Next extends AcceptanceStrategy {
 	}
 
 	@Override
-	public void init(NegotiationSession negoSession, OfferingStrategy strat, OpponentModel opponentModel,
+	public void init(NegotiationSession negoSession, OfferingStrategyMulti strat, OpponentModel[] opponentModels,
 			Map<String, Double> parameters) throws Exception {
 		this.negotiationSession = negoSession;
 		this.offeringStrategy = strat;

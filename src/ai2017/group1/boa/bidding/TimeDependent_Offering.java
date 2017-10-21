@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import ai2017.group1.boa.framework.OMStrategyMulti;
+import ai2017.group1.boa.framework.OfferingStrategyMulti;
 import negotiator.bidding.BidDetails;
 import negotiator.boaframework.BOAparameter;
 import negotiator.boaframework.NegotiationSession;
 import negotiator.boaframework.NoModel;
-import negotiator.boaframework.OMStrategy;
-import negotiator.boaframework.OfferingStrategy;
 import negotiator.boaframework.OpponentModel;
 import negotiator.boaframework.SortedOutcomeSpace;
 
@@ -25,7 +25,7 @@ import negotiator.boaframework.SortedOutcomeSpace;
  * loading the domain may take some time, which may lead to the agent skipping
  * the first bid. A better implementation is GeniusTimeDependent_Offering.
  */
-public class TimeDependent_Offering extends OfferingStrategy {
+public class TimeDependent_Offering extends OfferingStrategyMulti {
 
 	/**
 	 * k in [0, 1]. For k = 0 the agent starts with a bid of maximum utility
@@ -45,7 +45,7 @@ public class TimeDependent_Offering extends OfferingStrategy {
 	 * parameter "e" is the only parameter which is required.
 	 */
 	@Override
-	public void init(NegotiationSession negoSession, OpponentModel model, OMStrategy oms,
+	public void init(NegotiationSession negoSession, OpponentModel[] models, OMStrategyMulti oms,
 			Map<String, Double> parameters) throws Exception {
 		super.init(negoSession, parameters);
 		if (parameters.get("e") != null) {
@@ -73,7 +73,7 @@ public class TimeDependent_Offering extends OfferingStrategy {
 				Pmax = maxBid.getMyUndiscountedUtil();
 			}
 
-			this.opponentModel = model;
+			this.opponentModels = models;
 			this.omStrategy = oms;
 		} else {
 			throw new Exception("Constant \"e\" for the concession speed was not set.");
@@ -102,7 +102,7 @@ public class TimeDependent_Offering extends OfferingStrategy {
 		// + ". Aiming for " + utilityGoal);
 
 		// if there is no opponent model available
-		if (opponentModel instanceof NoModel) {
+		if (opponentModels[0] instanceof NoModel) {
 			nextBid = negotiationSession.getOutcomeSpace().getBidNearUtility(utilityGoal);
 		} else {
 			nextBid = omStrategy.getBid(outcomespace, utilityGoal);
