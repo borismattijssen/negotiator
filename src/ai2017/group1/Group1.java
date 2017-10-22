@@ -73,6 +73,7 @@ public class Group1 extends AbstractNegotiationParty {
     public void receiveMessage(AgentID sender, Action opponentAction) {
 	    super.receiveMessage(sender, opponentAction);
 	    if (getNumberOfParties() != -1) {
+	        offeringStrategy.setNoOfOpponents(getNumberOfParties() - 1);
             opponentModel.setNoOfOpponents(getNumberOfParties() - 1);
         }
         if (opponentAction instanceof Offer || opponentAction instanceof Accept) {

@@ -37,6 +37,9 @@ public class TimeDependent_Offering extends OfferingStrategy {
 	private double Pmin;
 	/** Concession factor */
 	private double e;
+
+	private double delta=0;
+	private int noOfOpponents;
 	/** Outcome space */
 	private SortedOutcomeSpace outcomespace;
 
@@ -95,6 +98,11 @@ public class TimeDependent_Offering extends OfferingStrategy {
 	public BidDetails determineNextBid() {
 		double time = negotiationSession.getTime();
 		double utilityGoal;
+		if (time > 0.9) {
+			delta = 0;
+		} else if(noOfOpponents > -1) {
+			delta = determineDelta(time);
+		}
 		utilityGoal = p(time);
 
 		// System.out.println("[e=" + e + ", Pmin = " +
@@ -108,6 +116,48 @@ public class TimeDependent_Offering extends OfferingStrategy {
 			nextBid = omStrategy.getBid(outcomespace, utilityGoal);
 		}
 		return nextBid;
+	}
+
+	private double determineDelta(double t) {
+		double d = delta;
+
+		int currentUtil = getAvgUtil(0);
+		int prevUtil = getAvgUtil(1);
+		if (currentUtil != -1 && prevUtil != -1) {
+			if (currentUtil < prevUtil) {
+				d += 0.05;
+				if (d > Pmax){
+					d = Pmax;
+				}
+			}
+			else {
+				d -= 0.05;
+				if (d < 0) {
+					d = 0;
+				}
+			}
+		}
+
+		return d;
+	}
+
+	private int getAvgUtil(int round) {
+		int avgUtil = -1;
+		if (negotiationSession.getOpponentBidHistory().size() >= noOfOpponents + 1) {
+			BidDetails oppBids[] = new BidDetails[noOfOpponents];
+			for (int i=0; i<noOfOpponents; i++) {
+				oppBids[i] = negotiationSession.getOpponentBidHistory().getHistory()
+						.get(negotiationSession.getOpponentBidHistory().size() - (i+1+round));
+			}
+
+			int ownUtil = 0;
+			for (BidDetails oppBid:oppBids) {
+				ownUtil += oppBid.getMyUndiscountedUtil();
+			}
+			avgUtil = ownUtil/noOfOpponents;
+		}
+
+		return avgUtil;
 	}
 
 	/**
@@ -138,7 +188,7 @@ public class TimeDependent_Offering extends OfferingStrategy {
 	 * @return double
 	 */
 	public double p(double t) {
-		return Pmin + (Pmax - Pmin) * (1 - f(t));
+		return Pmin + (Pmax - Pmin) * (1 - f(t)) + delta;
 	}
 
 	public NegotiationSession getNegotiationSession() {
@@ -159,5 +209,9 @@ public class TimeDependent_Offering extends OfferingStrategy {
 	@Override
 	public String getName() {
 		return "TimeDependent Offering example";
+	}
+
+	public void setNoOfOpponents(int noOfOpponents) {
+		this.noOfOpponents = noOfOpponents;
 	}
 }
