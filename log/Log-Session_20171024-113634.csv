@@ -1,0 +1,8 @@
+1,1,0.0055248618784530384,RandomParty@0,(Offer  bid:Bid[Food: Handmade Food, Drinks: Non-Alcoholic, Location: Ballroom, Invitations: Custom, Printed, Music: MP3, Cleanup: Special Equiment, ])
+1,2,0.0055248618784530384,RandomParty2@1,(Offer  bid:Bid[Food: Handmade Food, Drinks: Catering, Location: Ballroom, Invitations: Custom, Handmade, Music: MP3, Cleanup: Hired Help, ])
+1,3,0.0055248618784530384,Group1@2,(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Non-Alcoholic, Location: Ballroom, Invitations: Photo, Music: Band, Cleanup: Specialized Materials, ])
+2,1,0.011049723756906077,RandomParty@0,(Offer  bid:Bid[Food: Catering, Drinks: Beer Only, Location: Your Dorm, Invitations: Custom, Printed, Music: Band, Cleanup: Hired Help, ])
+2,2,0.011049723756906077,RandomParty2@1,(Offer  bid:Bid[Food: Handmade Food, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Handmade, Music: DJ, Cleanup: Specialized Materials, ])
+2,3,0.011049723756906077,Group1@2,(Offer  bid:Bid[Food: Finger-Food, Drinks: Non-Alcoholic, Location: Party Tent, Invitations: Plain, Music: DJ, Cleanup: Hired Help, ])
+3,1,0.016574585635359115,RandomParty@0,(Offer  bid:Bid[Food: Catering, Drinks: Non-Alcoholic, Location: Your Dorm, Invitations: Photo, Music: MP3, Cleanup: Special Equiment, ])
+3,2,0.016574585635359115,RandomParty2@1,(Offer  bid:Bid[Food: Finger-Food, Drinks: Beer Only, Location: Party Tent, Invitations: Custom, Printed, Music: Band, Cleanup: Hired Help, ])

@@ -98,7 +98,7 @@ public class TimeDependent_Offering extends OfferingStrategy {
 	public BidDetails determineNextBid() {
 		double time = negotiationSession.getTime();
 		double utilityGoal;
-		if (time > 0.9) {
+		if (time > 0.95) {
 			delta = 0;
 		} else if(noOfOpponents > -1) {
 			delta = determineDelta(time);
@@ -121,17 +121,17 @@ public class TimeDependent_Offering extends OfferingStrategy {
 	private double determineDelta(double t) {
 		double d = delta;
 
-		int currentUtil = getAvgUtil(0);
-		int prevUtil = getAvgUtil(1);
+		double currentUtil = getAvgUtil(0);
+		double prevUtil = getAvgUtil(1);
 		if (currentUtil != -1 && prevUtil != -1) {
 			if (currentUtil < prevUtil) {
-				d += 0.05;
-				if (d > Pmax){
-					d = Pmax;
+				d += 0.01;
+				if (d > Pmax - p(t)){
+					d = Pmax - p(t);
 				}
 			}
 			else {
-				d -= 0.05;
+				d -= 0.01;
 				if (d < 0) {
 					d = 0;
 				}
@@ -141,8 +141,8 @@ public class TimeDependent_Offering extends OfferingStrategy {
 		return d;
 	}
 
-	private int getAvgUtil(int round) {
-		int avgUtil = -1;
+	private double getAvgUtil(int round) {
+		double avgUtil = -1;
 		if (negotiationSession.getOpponentBidHistory().size() >= noOfOpponents + 1) {
 			BidDetails oppBids[] = new BidDetails[noOfOpponents];
 			for (int i=0; i<noOfOpponents; i++) {
@@ -150,8 +150,8 @@ public class TimeDependent_Offering extends OfferingStrategy {
 						.get(negotiationSession.getOpponentBidHistory().size() - (i+1+round));
 			}
 
-			int ownUtil = 0;
-			for (BidDetails oppBid:oppBids) {
+			double ownUtil = 0;
+			for (BidDetails oppBid : oppBids) {
 				ownUtil += oppBid.getMyUndiscountedUtil();
 			}
 			avgUtil = ownUtil/noOfOpponents;
@@ -176,7 +176,7 @@ public class TimeDependent_Offering extends OfferingStrategy {
 	public double f(double t) {
 		if (e == 0)
 			return k;
-		double ft = k + (1 - k) * Math.pow(t, 1.0 / e);
+		double ft = k + (1 - k) * Math.pow(t, e);
 		return ft;
 	}
 
