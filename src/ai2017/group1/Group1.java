@@ -4,6 +4,7 @@ import ai2017.group1.boa.acceptance.AC_Next;
 import ai2017.group1.boa.bidding.TimeDependent_Offering;
 import ai2017.group1.boa.opponent.BestBid;
 import ai2017.group1.boa.opponent.HardHeadedFrequencyModel;
+import list.Tuple;
 import negotiator.AgentID;
 import negotiator.Bid;
 import negotiator.actions.Accept;
@@ -20,10 +21,12 @@ import misc.Pair;
 import negotiator.timeline.TimeLineInfo;
 import negotiator.utility.AbstractUtilitySpace;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 /**
@@ -37,6 +40,7 @@ public class Group1 extends AbstractNegotiationParty {
 	protected BestBid omStrategy;
 	protected NegotiationSession negotiationSession;
 	private Bid oppBid;
+	private List<Tuple<Double, Double>> myBids = new ArrayList<>();
 
 	@Override
 	public void init(NegotiationInfo info) {
@@ -56,7 +60,7 @@ public class Group1 extends AbstractNegotiationParty {
 			Map<String, Double> parameters = new HashMap<String, Double>() {{
 				put("l", 0.1);
 				put("t", 1.1);
-				put("e", 3.0);
+				put("e", 10.0);
 				put("k", 0.0);
 				put("a", 1.0);
 				put("b", 0.0);
@@ -73,6 +77,7 @@ public class Group1 extends AbstractNegotiationParty {
     public void receiveMessage(AgentID sender, Action opponentAction) {
 	    super.receiveMessage(sender, opponentAction);
 	    if (getNumberOfParties() != -1) {
+	        offeringStrategy.setNoOfOpponents(getNumberOfParties() - 1);
             opponentModel.setNoOfOpponents(getNumberOfParties() - 1);
         }
         if (opponentAction instanceof Offer || opponentAction instanceof Accept) {
@@ -110,6 +115,8 @@ public class Group1 extends AbstractNegotiationParty {
                 return new EndNegotiation(this.getPartyId());
             }
         }
+//        myBids.put(new Double(this.timeline.getTime()).toString(), new Double(bid.getMyUndiscountedUtil()).toString());
+        myBids.add(new Tuple<>(timeline.getTime(), bid.getMyUndiscountedUtil()));
 
         if (bid == null) {
             System.out.println("Error in code, null bid was given");
@@ -144,6 +151,25 @@ public class Group1 extends AbstractNegotiationParty {
 //        }
 //
 //    }
+    public HashMap<String, String> negotiationEnded(Bid acceptedBid) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
+            Date date = new Date();
+            PrintWriter pw = new PrintWriter(new File("log/our_" + dateFormat.format(date) + ".csv"));
+            StringBuilder sb = new StringBuilder();
+            for (Tuple<Double, Double> myBid : myBids) {
+                sb.append(myBid.get1());
+                sb.append(";");
+                sb.append(myBid.get2());
+                sb.append("\n");
+            }
+            pw.write(sb.toString());
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 	@Override
 	public String getDescription() {
