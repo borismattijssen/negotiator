@@ -54,7 +54,20 @@ public class Group1_Accept extends AcceptanceStrategy{
         double nextMyBidUtil = offeringStrategy.getNextBid().getMyUndiscountedUtil();
         double lastOpponentBidUtil = negotiationSession.getOpponentBidHistory().getLastBidDetails()
                 .getMyUndiscountedUtil();
+        double minimumUtility = 0.95;
 
+        /* Set a and b based on time lef */
+        if () {
+
+        }
+
+        /* Set minimum utility based on time left */
+        if () {
+
+        }
+        double timePassed = negotiationSession.getTime();
+
+        /* Accept opponent bid if the utility is higher than the utility of own previous bid */
         if (!negotiationSession.getOwnBidHistory().getHistory().isEmpty()) {
             double prevMyBidUtil = negotiationSession.getOwnBidHistory().getLastBidDetails()
                     .getMyUndiscountedUtil();
@@ -62,11 +75,13 @@ public class Group1_Accept extends AcceptanceStrategy{
                 return Actions.Accept;
             }
         }
-        else if (a * lastOpponentBidUtil + b >= nextMyBidUtil) {
+        /* Accept opponent bid if the utility is higher than the utility of own next bid */
+        else if (((a * lastOpponentBidUtil) + b) >= nextMyBidUtil) {
             /* insert changes to a and b based on time left and concessions level, for next deadline */
             return Actions.Accept;
         }
-        else if(lastOpponentBidUtil >= 0.95){
+        /* Accept opponent bid if the utility is above a set value */
+        else if(lastOpponentBidUtil >= minimumUtility){
             /* insert changes to minimum utility acceptability based on time left and concessions level, for next deadline */
             return Actions.Accept;
         }
