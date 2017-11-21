@@ -1,6 +1,7 @@
 package ai2017.group1;
 
 import ai2017.group1.boa.acceptance.AC_Next;
+import ai2017.group1.boa.acceptance.Group1_Accept;
 import ai2017.group1.boa.bidding.TimeDependent_Offering;
 import ai2017.group1.boa.opponent.BestBid;
 import ai2017.group1.boa.opponent.HardHeadedFrequencyModel;
@@ -34,7 +35,7 @@ import java.util.*;
  */
 public class Group1 extends AbstractNegotiationParty {
 
-	protected AC_Next acceptConditions;
+	protected Group1_Accept acceptConditions;
 	protected TimeDependent_Offering offeringStrategy;
 	protected HardHeadedFrequencyModel opponentModel;
 	protected BestBid omStrategy;
@@ -56,7 +57,7 @@ public class Group1 extends AbstractNegotiationParty {
 			opponentModel = new HardHeadedFrequencyModel();
 			omStrategy = new BestBid();
 			offeringStrategy = new TimeDependent_Offering();
-			acceptConditions = new AC_Next();
+			acceptConditions = new Group1_Accept();
 			Map<String, Double> parameters = new HashMap<String, Double>() {{
 				put("l", 0.1);
 				put("t", 1.1);

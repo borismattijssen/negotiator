@@ -1,0 +1,9 @@
+<?xml version="1.0" ?><Session>
+<NegotiationOutcome lastAction="(Accept  bid:Bid[Food: Chips and Nuts, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ])" currentTime="Wed Nov 01 15:32:46 CET 2017" domain="etc/templates/partydomain/party_domain.xml" runtime="14.613852" bids="256" finalOutcome="Bid[Food: Chips and Nuts, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ]" deadline="100rounds" timeOfAgreement="0.8613861386138614" startingAgent="-">
+<resultsOfAgent finalUtility="0.7849999999999999" agentClass="agents.anac.y2015.ParsAgent.ParsAgent" utilspace="etc/templates/partydomain/party1_utility.xml" discountedUtility="0.7849999999999999" agent="ParsAgent@8" discount="1.0" agentDesc="ANAC2015-3-ParsAgent">
+</resultsOfAgent>
+<resultsOfAgent finalUtility="0.9285654723948509" agentClass="agents.anac.y2015.ParsAgent.ParsAgent" utilspace="etc/templates/partydomain/party2_utility.xml" discountedUtility="0.9285654723948509" agent="ParsAgent@9" discount="1.0" agentDesc="ANAC2015-3-ParsAgent">
+</resultsOfAgent>
+<resultsOfAgent finalUtility="0.7176566046946408" agentClass="agents.anac.y2015.ParsAgent.ParsAgent" utilspace="etc/templates/partydomain/party3_utility.xml" discountedUtility="0.7176566046946408" agent="ParsAgent@10" discount="1.0" agentDesc="ANAC2015-3-ParsAgent">
+</resultsOfAgent>
+</NegotiationOutcome></Session>

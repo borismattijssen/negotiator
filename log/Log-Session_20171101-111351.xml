@@ -1,0 +1,7 @@
+<?xml version="1.0" ?><Session>
+<NegotiationOutcome lastAction="(Accept  bid:Bid[location: wolff, movie: the good, the bad &amp; the ugly, ])" currentTime="Wed Nov 01 11:13:52 CET 2017" domain="etc/templates/ANAC2015/group7-movie/movie.xml" runtime="0.538531" bids="324" finalOutcome="Bid[location: wolff, movie: the good, the bad &amp; the ugly, ]" deadline="180rounds" timeOfAgreement="0.9005524861878453" startingAgent="-">
+<resultsOfAgent finalUtility="0.7331440353319818" agentClass="negotiator.parties.RandomParty" utilspace="etc/templates/ANAC2015/group7-movie/movie-profile1.xml" discountedUtility="0.7331440353319818" agent="RandomParty@0" discount="1.0" agentDesc="Random party">
+</resultsOfAgent>
+<resultsOfAgent finalUtility="0.46868609679577045" agentClass="negotiator.parties.RandomParty2" utilspace="etc/templates/ANAC2015/group7-movie/movie-profile3.xml" discountedUtility="0.46868609679577045" agent="RandomParty2@1" discount="1.0" agentDesc="Random party">
+</resultsOfAgent>
+</NegotiationOutcome></Session>
