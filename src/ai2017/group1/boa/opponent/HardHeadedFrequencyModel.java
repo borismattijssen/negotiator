@@ -1,8 +1,16 @@
 package ai2017.group1.boa.opponent;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Map.Entry;
 
+import joptsimple.internal.Strings;
 import negotiator.Bid;
 import negotiator.bidding.BidDetails;
 import negotiator.boaframework.BOAparameter;
@@ -46,6 +54,8 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 	private int noOfOpponents = -1;
 	private AdditiveUtilitySpace[] opponentUtilitySpaces;
 
+	private String logFile;
+
 	/**
 	 * Initializes the utility space of the opponent such that all value issue
 	 * weights are equal.
@@ -60,6 +70,7 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 			learnCoef = 0.2;
 		}
 		learnValueAddition = 1;
+		amountOfIssues = negotiationSession.getDomain().getIssues().size();
 	}
 
 	private void initializeUtilitySpaces() {
@@ -77,7 +88,6 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 				e.printStackTrace();
 			}
 			// @TODO kinda redundant, could fix this
-			amountOfIssues = opponentUtilitySpaces[i].getDomain().getIssues().size();
 			double commonWeight = 1D / (double) amountOfIssues;
 
 			// initialize the weights
@@ -108,11 +118,11 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 	 *            bid
 	 * @return
 	 */
-	private HashMap<Integer, Integer> determineDifference(int oppoNo, BidDetails first, BidDetails second) {
+	private HashMap<Integer, Integer> determineDifference(BidDetails first, BidDetails second) {
 
 		HashMap<Integer, Integer> diff = new HashMap<Integer, Integer>();
 		try {
-			for (Issue i : opponentUtilitySpaces[oppoNo].getDomain().getIssues()) {
+			for (Issue i : negotiationSession.getDomain().getIssues()) {
 				diff.put(i.getNumber(), (((ValueDiscrete) first.getBid().getValue(i.getNumber()))
 						.equals((ValueDiscrete) second.getBid().getValue(i.getNumber()))) ? 0 : 1);
 			}
@@ -140,33 +150,26 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 				.get(negotiationSession.getOpponentBidHistory().size() - 1);
 		BidDetails prevOppBid = negotiationSession.getOpponentBidHistory().getHistory()
 				.get(negotiationSession.getOpponentBidHistory().size() - (noOfOpponents + 1));
-		HashMap<Integer, Integer> lastDiffSet = determineDifference(oppoNo, prevOppBid, oppBid);
+		HashMap<Integer, Integer> lastDiffSet = determineDifference(prevOppBid, oppBid);
 
 		// count the number of changes in value
 		for (Integer i : lastDiffSet.keySet()) {
 			if (lastDiffSet.get(i) == 0)
 				numberOfUnchanged++;
 		}
-
-		// This is the value to be added to weights of unchanged issues before
-		// normalization.
-		// Also the value that is taken as the minimum possible weight,
-		// (therefore defining the maximum possible also).
-		double goldenValue = learnCoef / (double) amountOfIssues;
-		// The total sum of weights before normalization.
-		double totalSum = 1D + goldenValue * (double) numberOfUnchanged;
-		// The maximum possible weight
-		double maximumWeight = 1D - ((double) amountOfIssues) * goldenValue / totalSum;
+		
+		double newTotal = 1D + (learnCoef * (double) numberOfUnchanged);
 
 		// re-weighing issues while making sure that the sum remains 1
 		for (Integer i : lastDiffSet.keySet()) {
-			if (lastDiffSet.get(i) == 0 && opponentUtilitySpaces[oppoNo].getWeight(i) < maximumWeight)
+			if (lastDiffSet.get(i) == 0)
 				opponentUtilitySpaces[oppoNo].setWeight(opponentUtilitySpaces[oppoNo].getDomain().getObjectives().get(i),
-						(opponentUtilitySpaces[oppoNo].getWeight(i) + goldenValue) / totalSum);
+						(opponentUtilitySpaces[oppoNo].getWeight(i) + learnCoef) / newTotal);
 			else
 				opponentUtilitySpaces[oppoNo].setWeight(opponentUtilitySpaces[oppoNo].getDomain().getObjectives().get(i),
-						opponentUtilitySpaces[oppoNo].getWeight(i) / totalSum);
+						opponentUtilitySpaces[oppoNo].getWeight(i) / newTotal);
 		}
+
 
 		// Then for each issue value that has been offered last time, a constant
 		// value is added to its corresponding ValueDiscrete.
