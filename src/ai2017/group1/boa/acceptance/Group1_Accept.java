@@ -56,16 +56,21 @@ public class Group1_Accept extends AcceptanceStrategy{
                 .getMyUndiscountedUtil();
         double minimumUtility = 0.95;
 
-        /* Set a and b based on time lef */
+        double timePassed = negotiationSession.getTime();
+
+        /* Set a and b based on time left
         if () {
 
-        }
+        }*/
 
         /* Set minimum utility based on time left */
-        if () {
-
+        if (timePassed >= 0.98) {
+            minimumUtility = 0.7;
         }
-        double timePassed = negotiationSession.getTime();
+        else if(timePassed >= 0.95){
+            minimumUtility = 0.9;
+        }
+
 
         /* Accept opponent bid if the utility is higher than the utility of own previous bid */
         if (!negotiationSession.getOwnBidHistory().getHistory().isEmpty()) {
