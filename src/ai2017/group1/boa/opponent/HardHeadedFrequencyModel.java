@@ -1,10 +1,7 @@
 package ai2017.group1.boa.opponent;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import negotiator.Bid;
 import negotiator.bidding.BidDetails;
@@ -66,9 +63,19 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 	}
 
 	private void initializeUtilitySpaces() {
-	    opponentUtilitySpaces = new AdditiveUtilitySpace[noOfOpponents];
+		Map<Objective, Evaluator> fEvaluators = new HashMap();
+		List<Issue> issues = negotiationSession.getDomain().getIssues();
+		for(Issue issue : issues) {
+			fEvaluators.put(issue, new EvaluatorDiscrete());
+		}
+
+		opponentUtilitySpaces = new AdditiveUtilitySpace[noOfOpponents];
 		for (int i = 0; i < noOfOpponents; i++) {
-			opponentUtilitySpaces[i] = new AdditiveUtilitySpace(negotiationSession.getDomain());
+			try {
+				opponentUtilitySpaces[i] = new AdditiveUtilitySpace(negotiationSession.getDomain(), fEvaluators);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			// @TODO kinda redundant, could fix this
 			amountOfIssues = opponentUtilitySpaces[i].getDomain().getIssues().size();
 			double commonWeight = 1D / (double) amountOfIssues;

@@ -43,6 +43,8 @@ public class Group1 extends AbstractNegotiationParty {
 	private Bid oppBid;
 	private List<Tuple<Double, Double>> myBids = new ArrayList<>();
 
+    private boolean noOfOpponentsPassed = false;
+
 	@Override
 	public void init(NegotiationInfo info) {
 
@@ -77,9 +79,10 @@ public class Group1 extends AbstractNegotiationParty {
 
     public void receiveMessage(AgentID sender, Action opponentAction) {
 	    super.receiveMessage(sender, opponentAction);
-	    if (getNumberOfParties() != -1) {
+	    if (getNumberOfParties() != -1 && noOfOpponentsPassed == false) {
 	        offeringStrategy.setNoOfOpponents(getNumberOfParties() - 1);
             opponentModel.setNoOfOpponents(getNumberOfParties() - 1);
+            noOfOpponentsPassed = true;
         }
         if (opponentAction instanceof Offer || opponentAction instanceof Accept) {
             if (opponentAction instanceof Offer) {
