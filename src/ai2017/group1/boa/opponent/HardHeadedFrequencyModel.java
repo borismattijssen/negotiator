@@ -49,9 +49,10 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 	// value which is added to a value if it is found. Determines how fast
 	// the value weights converge.
 	private int learnValueAddition;
-	private int amountOfIssues;
 
+	private int amountOfIssues;
 	private int noOfOpponents = -1;
+
 	private AdditiveUtilitySpace[] opponentUtilitySpaces;
 
 	private String logFile;
@@ -71,6 +72,7 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 		}
 		learnValueAddition = 1;
 		amountOfIssues = negotiationSession.getDomain().getIssues().size();
+		System.out.println(amountOfIssues);
 	}
 
 	private void initializeUtilitySpaces() {
@@ -112,11 +114,7 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 	 * if the value changed. If this is the case, a 1 is stored in a hashmap for
 	 * that issue, else a 0.
 	 * 
-	 * @param a
-	 *            bid of the opponent
-	 * @param another
-	 *            bid
-	 * @return
+	 * @return diff
 	 */
 	private HashMap<Integer, Integer> determineDifference(BidDetails first, BidDetails second) {
 
@@ -146,6 +144,7 @@ public class HardHeadedFrequencyModel extends OpponentModel {
 		}
 		int numberOfUnchanged = 0;
 		int oppoNo = (negotiationSession.getOpponentBidHistory().size() - 1) % noOfOpponents;
+
 		BidDetails oppBid = negotiationSession.getOpponentBidHistory().getHistory()
 				.get(negotiationSession.getOpponentBidHistory().size() - 1);
 		BidDetails prevOppBid = negotiationSession.getOpponentBidHistory().getHistory()
