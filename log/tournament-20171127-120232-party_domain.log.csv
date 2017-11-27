@@ -1,0 +1,26 @@
+sep=;
+Run time (s);Round;Exception;deadline;Agreement;Discounted;#agreeing;min.util.;max.util.;Dist. to Pareto;Dist. to Nash;Social Welfare;Agent 1;Agent 2;Agent 3;Agent 4;Utility 1;Utility 2;Utility 3;Utility 4;Disc. Util. 1;Disc. Util. 2;Disc. Util. 3;Disc. Util. 4;Profile 1;Profile 2;Profile 3;Profile 4
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@3:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@7:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@11:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@12:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@19:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@23:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@27:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@28:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@33:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@37:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@41:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@44:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@50:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@54:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@58:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@60:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@66:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@70:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@74:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@76:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@81:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@85:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@89:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;
+;;failure while running session:java.util.concurrent.ExecutionException: Execution failed of Group1@92:java.lang.NullPointerException;;;;;;;;;;;;;;;;;;;;;;;;;

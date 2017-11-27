@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<multilateralTournamentsConfiguration>
+	<tournaments>
+		<tournament>
+			<deadline>
+				<value>12</value>
+				<type>TIME</type>
+			</deadline>
+			<protocolItem hasMediatorProfile="false" hasMediator="false"
+				description="Each agents makes offer, counter-offer, or accepts"
+				classPath="negotiator.protocol.StackedAlternatingOffersProtocol"
+				protocolName="Stacked Alternating Offers Protocol for Multi-Lateral Negotiation (SAOPMN)" />
+			<partyRepItems>
+				<party classPath="out/production/negotiator/ai2017/group1/Group1.class">
+					<properties />
+				</party>
+				<party classPath="agents.anac.y2015.Atlas3.Atlas3">
+					<properties />
+				</party>
+				<party
+						classPath="agents.anac.y2015.agentBuyogV2.AgentBuyogMain">
+					<properties />
+				</party>
+				<party
+					classPath="agents.anac.y2015.AgentW.AgentW">
+					<properties />
+				</party>
+			</partyRepItems>
+			<partyProfileItems>
+				<item url="file:etc/templates/partydomain/party1_utility.xml" />
+				<item url="file:etc/templates/partydomain/party2_utility.xml" />
+				<item url="file:etc/templates/partydomain/party3_utility.xml" />
+				<item url="file:etc/templates/partydomain/party4_utility.xml" />
+			</partyProfileItems>
+			<repeats>1</repeats>
+			<numberOfPartiesPerSession>4</numberOfPartiesPerSession>
+			<repetitionAllowed>false</repetitionAllowed>
+			<persistentDataType>DISABLED</persistentDataType>
+		</tournament>
+
+	</tournaments>
+</multilateralTournamentsConfiguration>

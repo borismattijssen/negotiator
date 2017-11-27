@@ -1,0 +1,181 @@
+<?xml version="1.0" ?><Tournament>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:19 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Non-Alcoholic, Location: Party Tent, Invitations: Plain, Music: Band, Cleanup: Hired Help, ])" domain="etc/templates/partydomain/party_domain.xml" bids="3" runtime="0.024443037" finalOutcome="-" startingAgent="-" deadline="12s">
+<resultsOfAgent agent="AgentW@0" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@1" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@2" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@3" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:19 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Non-Alcoholic, Location: Party Tent, Invitations: Plain, Music: Band, Cleanup: Hired Help, ])" domain="etc/templates/partydomain/party_domain.xml" bids="3" runtime="0.007242842" finalOutcome="-" startingAgent="Atlas3@4" deadline="12s">
+<resultsOfAgent agent="Atlas3@4" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@5" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@6" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@7" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:20 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Non-Alcoholic, Location: Party Tent, Invitations: Plain, Music: Band, Cleanup: Hired Help, ])" domain="etc/templates/partydomain/party_domain.xml" bids="3" runtime="0.007834592" finalOutcome="-" startingAgent="AgentBuyogMain@8" deadline="12s">
+<resultsOfAgent agent="AgentBuyogMain@8" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@9" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@10" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@11" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:20 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Non-Alcoholic, Location: Party Tent, Invitations: Plain, Music: Band, Cleanup: Hired Help, ])" domain="etc/templates/partydomain/party_domain.xml" bids="3" runtime="0.006910726" finalOutcome="-" startingAgent="AgentW@16" deadline="12s">
+<resultsOfAgent agent="AgentW@16" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@17" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@18" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@19" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:21 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Non-Alcoholic, Location: Party Tent, Invitations: Plain, Music: Band, Cleanup: Hired Help, ])" domain="etc/templates/partydomain/party_domain.xml" bids="3" runtime="0.006493489" finalOutcome="-" startingAgent="Atlas3@20" deadline="12s">
+<resultsOfAgent agent="Atlas3@20" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@21" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@22" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@23" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:21 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Non-Alcoholic, Location: Party Tent, Invitations: Plain, Music: Band, Cleanup: Hired Help, ])" domain="etc/templates/partydomain/party_domain.xml" bids="3" runtime="0.008199937" finalOutcome="-" startingAgent="AgentBuyogMain@24" deadline="12s">
+<resultsOfAgent agent="AgentBuyogMain@24" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@25" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@26" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@27" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:22 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Beer Only, Location: Party Room, Invitations: Custom, Handmade, Music: DJ, Cleanup: Specialized Materials, ])" domain="etc/templates/partydomain/party_domain.xml" bids="1" runtime="0.002852714" finalOutcome="-" startingAgent="AgentW@32" deadline="12s">
+<resultsOfAgent agent="AgentW@32" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@33" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@34" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@35" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:22 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Beer Only, Location: Party Room, Invitations: Custom, Handmade, Music: DJ, Cleanup: Specialized Materials, ])" domain="etc/templates/partydomain/party_domain.xml" bids="1" runtime="0.003042625" finalOutcome="-" startingAgent="Atlas3@36" deadline="12s">
+<resultsOfAgent agent="Atlas3@36" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@37" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@38" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@39" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:22 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Beer Only, Location: Party Room, Invitations: Custom, Handmade, Music: DJ, Cleanup: Specialized Materials, ])" domain="etc/templates/partydomain/party_domain.xml" bids="1" runtime="0.002881808" finalOutcome="-" startingAgent="AgentBuyogMain@40" deadline="12s">
+<resultsOfAgent agent="AgentBuyogMain@40" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@41" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@42" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@43" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:23 CET 2017" lastAction="(Offer  bid:Bid[Food: Catering, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ])" domain="etc/templates/partydomain/party_domain.xml" bids="2" runtime="0.004000019" finalOutcome="-" startingAgent="AgentW@48" deadline="12s">
+<resultsOfAgent agent="AgentW@48" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@49" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@50" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@51" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:23 CET 2017" lastAction="(Offer  bid:Bid[Food: Catering, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ])" domain="etc/templates/partydomain/party_domain.xml" bids="2" runtime="0.004138201" finalOutcome="-" startingAgent="Atlas3@52" deadline="12s">
+<resultsOfAgent agent="Atlas3@52" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@53" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@54" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@55" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:23 CET 2017" lastAction="(Offer  bid:Bid[Food: Catering, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ])" domain="etc/templates/partydomain/party_domain.xml" bids="2" runtime="0.003884838" finalOutcome="-" startingAgent="AgentBuyogMain@56" deadline="12s">
+<resultsOfAgent agent="AgentBuyogMain@56" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@57" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@58" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@59" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:24 CET 2017" lastAction="(Offer  bid:Bid[Food: Catering, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ])" domain="etc/templates/partydomain/party_domain.xml" bids="2" runtime="0.00444773" finalOutcome="-" startingAgent="AgentW@64" deadline="12s">
+<resultsOfAgent agent="AgentW@64" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@65" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@66" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@67" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:24 CET 2017" lastAction="(Offer  bid:Bid[Food: Catering, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ])" domain="etc/templates/partydomain/party_domain.xml" bids="2" runtime="0.003978655" finalOutcome="-" startingAgent="Atlas3@68" deadline="12s">
+<resultsOfAgent agent="Atlas3@68" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@69" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@70" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@71" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:25 CET 2017" lastAction="(Offer  bid:Bid[Food: Catering, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ])" domain="etc/templates/partydomain/party_domain.xml" bids="2" runtime="0.0038468" finalOutcome="-" startingAgent="AgentBuyogMain@72" deadline="12s">
+<resultsOfAgent agent="AgentBuyogMain@72" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@73" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@74" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@75" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:25 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Beer Only, Location: Party Room, Invitations: Custom, Handmade, Music: DJ, Cleanup: Specialized Materials, ])" domain="etc/templates/partydomain/party_domain.xml" bids="1" runtime="0.002824662" finalOutcome="-" startingAgent="AgentW@80" deadline="12s">
+<resultsOfAgent agent="AgentW@80" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@81" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@82" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@83" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:25 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Beer Only, Location: Party Room, Invitations: Custom, Handmade, Music: DJ, Cleanup: Specialized Materials, ])" domain="etc/templates/partydomain/party_domain.xml" bids="1" runtime="0.003770299" finalOutcome="-" startingAgent="Atlas3@84" deadline="12s">
+<resultsOfAgent agent="Atlas3@84" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@85" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentBuyogMain@86" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@87" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Mon Nov 27 11:36:26 CET 2017" lastAction="(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Beer Only, Location: Party Room, Invitations: Custom, Handmade, Music: DJ, Cleanup: Specialized Materials, ])" domain="etc/templates/partydomain/party_domain.xml" bids="1" runtime="0.002603793" finalOutcome="-" startingAgent="AgentBuyogMain@88" deadline="12s">
+<resultsOfAgent agent="AgentBuyogMain@88" agentDesc="ANAC2015-13-Buyog" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@89" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@90" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party3_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="AgentW@91" agentDesc="ANAC2015-9-AgentW" utilspace="etc/templates/partydomain/party4_utility.xml" agentClass="agents.anac.y2015.AgentW.AgentW" finalUtility="0.0" discountedUtility="0.0" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
