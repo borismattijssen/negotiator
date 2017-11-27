@@ -1,5 +1,6 @@
 package ai2017.group1.boa.bidding;
 
+import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -58,6 +59,13 @@ public class TimeDependent_Offering extends OfferingStrategy {
 			negotiationSession.setOutcomeSpace(outcomespace);
 
 			this.e = parameters.get("e");
+			Map<String, String> env = System.getenv();
+			if(env.containsKey("PARAM_E")) {
+				this.e = Double.parseDouble(env.get("PARAM_E"));
+			}
+			PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+			writer.println("Param e:" + this.e);
+			writer.close();
 
 			if (parameters.get("k") != null)
 				this.k = parameters.get("k");
