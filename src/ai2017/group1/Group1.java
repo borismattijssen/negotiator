@@ -1,10 +1,9 @@
 package ai2017.group1;
 
-import ai2017.group1.boa.acceptance.AC_Next;
 import ai2017.group1.boa.acceptance.Group1_Accept;
 import ai2017.group1.boa.bidding.TimeDependent_Offering;
 import ai2017.group1.boa.opponent.BestBid;
-import ai2017.group1.boa.opponent.HardHeadedFrequencyModel;
+import ai2017.group1.boa.opponent.FrequencyModel;
 import list.Tuple;
 import negotiator.AgentID;
 import negotiator.Bid;
@@ -18,9 +17,6 @@ import negotiator.boaframework.NegotiationSession;
 import negotiator.boaframework.SessionData;
 import negotiator.parties.AbstractNegotiationParty;
 import negotiator.parties.NegotiationInfo;
-import misc.Pair;
-import negotiator.timeline.TimeLineInfo;
-import negotiator.utility.AbstractUtilitySpace;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,7 +33,7 @@ public class Group1 extends AbstractNegotiationParty {
 
 	protected Group1_Accept acceptConditions;
 	protected TimeDependent_Offering offeringStrategy;
-	protected HardHeadedFrequencyModel opponentModel;
+	protected FrequencyModel opponentModel;
 	protected BestBid omStrategy;
 	protected NegotiationSession negotiationSession;
 	private Bid oppBid;
@@ -56,7 +52,7 @@ public class Group1 extends AbstractNegotiationParty {
 
 	private void initStrategies() {
 		try {
-			opponentModel = new HardHeadedFrequencyModel();
+			opponentModel = new FrequencyModel();
 			omStrategy = new BestBid();
 			offeringStrategy = new TimeDependent_Offering();
 			acceptConditions = new Group1_Accept();

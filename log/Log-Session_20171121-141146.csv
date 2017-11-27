@@ -1,0 +1,4 @@
+1,1,0.0055248618784530384,RandomParty@0,(Offer  bid:Bid[Food: Catering, Drinks: Non-Alcoholic, Location: Ballroom, Invitations: Plain, Music: Band, Cleanup: Special Equiment, ])
+1,2,0.0055248618784530384,RandomParty2@1,(Offer  bid:Bid[Food: Catering, Drinks: Beer Only, Location: Ballroom, Invitations: Custom, Handmade, Music: MP3, Cleanup: Water and Soap, ])
+1,3,0.0055248618784530384,Group1@2,(Offer  bid:Bid[Food: Chips and Nuts, Drinks: Non-Alcoholic, Location: Party Tent, Invitations: Plain, Music: Band, Cleanup: Hired Help, ])
+ended-no-agreement
