@@ -1,19 +1,18 @@
 #!/bin/bash
 
-LOG_FOLDER="logs"
-if [ ! -z "$1" ]
+if [ -z "$1" ]
 then
-    LOG_FOLDER=$1
+    echo "Please set param e like so: simulate.sh <param-e>"
+    exit 1
 fi
 
-#VALUES=(0.5 1 2 4 6 8 10 12 14)
-VALUES=(0.5 1 2 4 6)
-count=0
-while [ "x${VALUES[count]}" != "x" ]
-do
-    echo "SUMULATION FOR E=${VALUES[count]} started."
-    PARAM_E=${VALUES[count]}
-    echo $PARAM_E
-    echo "$LOG_FOLDER/e_${VALUES[count]}" | java -cp negosimulator.jar negotiator.xml.multipartyrunner.Runner cli_run.xml
-    count=$(( $count + 1 ))
-done
+LOG_FOLDER="logs"
+if [ ! -z "$2" ]
+then
+    LOG_FOLDER=$2
+fi
+
+echo "SUMULATION FOR E=$1 started."
+PARAM_E=$2
+echo $PARAM_E
+echo "$LOG_FOLDER/e_$1" | java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -cp negosimulator.jar negotiator.xml.multipartyrunner.Runner cli_run.xml

@@ -3,7 +3,7 @@
 	<tournaments>
 		<tournament>
 			<deadline>
-				<value>12</value>
+				<value>60</value>
 				<type>TIME</type>
 			</deadline>
 			<protocolItem hasMediatorProfile="false" hasMediator="false"

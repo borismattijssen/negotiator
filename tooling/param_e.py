@@ -2,6 +2,7 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
 
 def sim_utils( file, no_of_agents ):
     r = {}
@@ -28,16 +29,24 @@ def sim_utils( file, no_of_agents ):
 
     return r
 
+if len(sys.argv) < 2:
+    print('Please specify base path like so: param_e.py <base-path>')
+    sys.exit(1)
 
-es = [0.5,1,2,4,6,8,10,12,14]
-file_tmpl = "../logs/e_{}.csv"
+#es = [0.5,1,2,4,6,8,10,12,14]
+es = [0.33,0.66,2,4,10,12,14]
+file_tmpl = sys.argv[1] + "/e_{}.csv"
 agents = 4
-y = []
+y = {}
 for e in es:
     utils = sim_utils(file_tmpl.format(e), agents)
-    y.append(utils['Group1'])
+    for agent in utils:
+        if agent not in y:
+            y[agent] = []
+        y[agent].append(utils[agent])
 
-plt.plot(es, y, label='Group1')
+for agent in y:
+    plt.plot(es, y[agent], label=agent)
 
 # Add a legend
 plt.legend()

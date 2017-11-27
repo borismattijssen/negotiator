@@ -59,7 +59,7 @@ public class Group1 extends AbstractNegotiationParty {
 			Map<String, Double> parameters = new HashMap<String, Double>() {{
 				put("l", 0.1);
 				put("t", 1.1);
-				put("e", 10.0);
+				put("e", 0.5);
 				put("k", 0.0);
 				put("a", 1.0);
 				put("b", 0.0);

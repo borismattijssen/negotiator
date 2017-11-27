@@ -1,1 +1,1 @@
-Param e:10.0
+Param e:0.5

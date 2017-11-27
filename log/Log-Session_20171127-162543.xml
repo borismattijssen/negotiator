@@ -1,0 +1,11 @@
+<?xml version="1.0" ?><Session>
+<NegotiationOutcome lastAction="(Accept  bid:Bid[Food: Chips and Nuts, Drinks: Non-Alcoholic, Location: Party Room, Invitations: Plain, Music: MP3, Cleanup: Hired Help, ])" runtime="51.027572" bids="2993" startingAgent="-" timeOfAgreement="0.8511867666666666" currentTime="Mon Nov 27 16:26:34 CET 2017" domain="etc/templates/partydomain/party_domain.xml" deadline="60s" finalOutcome="Bid[Food: Chips and Nuts, Drinks: Non-Alcoholic, Location: Party Room, Invitations: Plain, Music: MP3, Cleanup: Hired Help, ]">
+<resultsOfAgent finalUtility="0.6458333333333334" agentClass="agents.anac.y2015.Atlas3.Atlas3" utilspace="etc/templates/partydomain/party1_utility.xml" discountedUtility="0.6458333333333334" agent="Atlas3@0" discount="1.0" agentDesc="ANAC2015-6-Atlas">
+</resultsOfAgent>
+<resultsOfAgent finalUtility="0.8690468499999999" agentClass="ai2017.group1.Group1" utilspace="etc/templates/partydomain/party4_utility.xml" discountedUtility="0.8690468499999999" agent="Group1@3" discount="1.0" agentDesc="example party group 1">
+</resultsOfAgent>
+<resultsOfAgent finalUtility="0.8495472649801583" agentClass="agents.anac.y2015.agentBuyogV2.AgentBuyogMain" utilspace="etc/templates/partydomain/party3_utility.xml" discountedUtility="0.8495472649801583" agent="AgentBuyogMain@2" discount="1.0" agentDesc="ANAC2015-13-Buyog">
+</resultsOfAgent>
+<resultsOfAgent finalUtility="0.5447643224424074" agentClass="agents.anac.y2015.AgentW.AgentW" utilspace="etc/templates/partydomain/party2_utility.xml" discountedUtility="0.5447643224424074" agent="AgentW@1" discount="1.0" agentDesc="ANAC2015-9-AgentW">
+</resultsOfAgent>
+</NegotiationOutcome></Session>
