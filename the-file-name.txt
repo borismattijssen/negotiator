@@ -1,2 +1,2 @@
-Param e:12.0
-Param f:0.8
+Param e:4.0
+Param f:0.5

@@ -35,7 +35,7 @@ if len(sys.argv) < 2:
 
 es = [0.5,1,2,4,6,8,10,12,14]
 file_tmpl = sys.argv[1] + "/e_{}.csv"
-agents = 3
+agents = 4
 y = {}
 for e in es:
     utils = sim_utils(file_tmpl.format(e), agents)

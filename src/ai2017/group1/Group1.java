@@ -60,11 +60,11 @@ public class Group1 extends AbstractNegotiationParty {
 			Map<String, Double> parameters = new HashMap<String, Double>() {{
 				put("l", 0.1);
 				put("t", 1.1);
-				put("e", 12.0);
+				put("e", 0.5);
 				put("k", 0.0);
 				put("a", 1.0);
 				put("b", 0.0);
-				put("min", 0.7);
+				put("min", 0.9);
 			}};
 			this.opponentModel.init(this.negotiationSession, parameters);
 			this.omStrategy.init(this.negotiationSession, this.opponentModel, parameters);
