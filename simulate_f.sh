@@ -15,11 +15,8 @@ fi
 echo "SUMULATION FOR F=$1 started."
 UTILS_LOG_FOLDER="$LOG_FOLDER/f_$1"
 mkdir "$UTILS_LOG_FOLDER" || echo "Folder already exists"
-#echo "$LOG_FOLDER/f_$1" | java -Dlogfolder="$UTILS_LOG_FOLDER" \
-#                                -Dparamf="$1" \
-#                                -XX:+UnlockExperimentalVMOptions \
-#                                -XX:+UseCGroupMemoryLimitForHeap \
-#                                -cp negosimulator.jar negotiator.xml.multipartyrunner.Runner cli_run.xml
 echo "$LOG_FOLDER/f_$1" | java -Dlogfolder="$UTILS_LOG_FOLDER" \
                                 -Dparamf="$1" \
+                                -XX:+UnlockExperimentalVMOptions \
+                                -XX:+UseCGroupMemoryLimitForHeap \
                                 -cp negosimulator.jar negotiator.xml.multipartyrunner.Runner cli_run.xml
