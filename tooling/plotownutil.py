@@ -5,24 +5,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 
-file_tmpl = "../log/{}.csv"
-m = {
-    0.5: 'our_2017.11.27_16.45.25',
-    1: 'our_2017.11.27_16.45.42',
-    2: 'our_2017.11.27_16.46.40',
-    4: 'our_2017.11.27_16.46.55',
-    6: 'our_2017.11.27_16.47.10',
-    8: 'our_2017.11.27_16.47.25',
-    10: 'our_2017.11.27_16.47.39',
-    12: 'our_2017.11.27_16.47.52',
-    14: 'our_2017.11.27_16.48.07',
-}
+if len(sys.argv) < 2:
+    print('Please specify base path like so: param_e.py <base-path>')
+    sys.exit(1)
+file_tmpl = sys.argv[1] + "/e_{}/our.csv"
+m = [0.5, 1, 2, 4, 6, 8, 10, 12, 14]
 
 plt.figure(1)
 sub_base = 330
 count = 1
 for key in m:
-    d = np.genfromtxt(file_tmpl.format(m[key]), delimiter=';', names=['x','y'])
+    d = np.genfromtxt(file_tmpl.format(key), delimiter=';', names=['x','y'])
 
     # Plot the data
     # plt.subplot(sub_base+count)
@@ -33,6 +26,9 @@ for key in m:
 
     # increase counter
     count = count+1
+
+# Show title
+plt.title("Our utility per parameter e")
 
 # Show the plot
 plt.show()

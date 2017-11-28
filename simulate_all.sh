@@ -11,8 +11,15 @@ count=0
 while [ "x${VALUES[count]}" != "x" ]
 do
     echo "SUMULATION FOR E=${VALUES[count]} started."
-    PARAM_E=${VALUES[count]}
-    echo $PARAM_E
-    echo "$LOG_FOLDER/e_${VALUES[count]}" | java -cp negosimulator.jar negotiator.xml.multipartyrunner.Runner cli_run.xml
+    UTILS_LOG_FOLDER="$LOG_FOLDER/e_${VALUES[count]}"
+    mkdir "$UTILS_LOG_FOLDER" || echo "Folder already exists"
+#    echo "$LOG_FOLDER/e_${VALUES[count]}" | java -Dlogfolder="$UTILS_LOG_FOLDER" \
+#                                                 -Dparame="${VALUES[count]}" \
+#                                                 -XX:+UnlockExperimentalVMOptions \
+#                                                 -XX:+UseCGroupMemoryLimitForHeap \
+#                                                 -cp negosimulator.jar negotiator.xml.multipartyrunner.Runner cli_run.xml
+    echo "$LOG_FOLDER/e_${VALUES[count]}" | java -Dlogfolder="$UTILS_LOG_FOLDER" \
+                                                 -Dparame="${VALUES[count]}" \
+                                                 -cp negosimulator.jar negotiator.xml.multipartyrunner.Runner cli_run.xml
     count=$(( $count + 1 ))
 done

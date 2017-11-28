@@ -13,6 +13,13 @@ then
 fi
 
 echo "SUMULATION FOR E=$1 started."
-PARAM_E=$2
-echo $PARAM_E
-echo "$LOG_FOLDER/e_$1" | java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -cp negosimulator.jar negotiator.xml.multipartyrunner.Runner cli_run.xml
+UTILS_LOG_FOLDER="$LOG_FOLDER/e_$1"
+mkdir "$UTILS_LOG_FOLDER" || echo "Folder already exists"
+#echo "$LOG_FOLDER/e_$1" | java -Dlogfolder="$UTILS_LOG_FOLDER"  \
+#                                -Dparame="$1" \
+#                                -XX:+UnlockExperimentalVMOptions \
+#                                -XX:+UseCGroupMemoryLimitForHeap \
+#                                -cp negosimulator.jar negotiator.xml.multipartyrunner.Runner cli_run.xml
+echo "$LOG_FOLDER/e_$1" | java -Dlogfolder="$UTILS_LOG_FOLDER"  \
+                                -Dparame="$1" \
+                                -cp negosimulator.jar negotiator.xml.multipartyrunner.Runner cli_run.xml

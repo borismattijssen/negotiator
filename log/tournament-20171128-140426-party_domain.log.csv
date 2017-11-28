@@ -1,0 +1,4 @@
+sep=;
+Run time (s);Round;Exception;deadline;Agreement;Discounted;#agreeing;min.util.;max.util.;Dist. to Pareto;Dist. to Nash;Social Welfare;Agent 1;Agent 2;Utility 1;Utility 2;Disc. Util. 1;Disc. Util. 2;Profile 1;Profile 2
+11.969;18463;;12s;Yes;No;2;0.73828;0.87833;0.00000;0.21194;1.61662;Atlas3@0;Group1@1;0.8783333333333334;0.7382820437475793;0.8783333333333334;0.7382820437475793;party1_utility.xml;party2_utility.xml
+11.717;17789;;12s;Yes;No;2;0.72167;0.97619;0.00000;0.07924;1.69786;Group1@2;Atlas3@3;0.7216666666666667;0.9761884907982836;0.7216666666666667;0.9761884907982836;party1_utility.xml;party2_utility.xml

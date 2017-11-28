@@ -1,3 +1,2 @@
 sep=;
-Run time (s);Round;Exception;deadline;Agreement;Discounted;#agreeing;min.util.;max.util.;Dist. to Pareto;Dist. to Nash;Social Welfare;Agent 1;Agent 2;Agent 3;Agent 4;Utility 1;Utility 2;Utility 3;Utility 4;Disc. Util. 1;Disc. Util. 2;Disc. Util. 3;Disc. Util. 4;Profile 1;Profile 2;Profile 3;Profile 4
-10.999;268;;12s;Yes;No;4;0.39908;0.89154;0.00000;0.49808;2.87610;Group1@0;Atlas3@1;AgentBuyogMain@2;AgentW@3;0.7283333333333334;0.3990824259572302;0.8915385873292463;0.857142025;0.7283333333333334;0.3990824259572302;0.8915385873292463;0.857142025;party1_utility.xml;party2_utility.xml;party3_utility.xml;party4_utility.xml
+Run time (s);Round;Exception;deadline;Agreement;Discounted;#agreeing;min.util.;max.util.;Dist. to Pareto;Dist. to Nash;Social Welfare;Agent 1;Agent 2;Agent 3;Utility 1;Utility 2;Utility 3;Disc. Util. 1;Disc. Util. 2;Disc. Util. 3;Profile 1;Profile 2;Profile 3

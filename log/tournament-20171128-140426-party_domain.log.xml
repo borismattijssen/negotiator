@@ -1,0 +1,13 @@
+<?xml version="1.0" ?><Tournament>
+<NegotiationOutcome currentTime="Tue Nov 28 14:04:38 CET 2017" timeOfAgreement="0.998986179" lastAction="(Accept  bid:Bid[Food: Chips and Nuts, Drinks: Beer Only, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ])" domain="etc/templates/partydomain/party_domain.xml" bids="36923" runtime="11.968504097" finalOutcome="Bid[Food: Chips and Nuts, Drinks: Beer Only, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ]" startingAgent="-" deadline="12s">
+<resultsOfAgent agent="Atlas3@0" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.8783333333333334" discountedUtility="0.8783333333333334" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Group1@1" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.7382820437475793" discountedUtility="0.7382820437475793" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome>
+<NegotiationOutcome currentTime="Tue Nov 28 14:04:50 CET 2017" timeOfAgreement="0.9764248929166667" lastAction="(Accept  bid:Bid[Food: Handmade Food, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ])" domain="etc/templates/partydomain/party_domain.xml" bids="35574" runtime="11.716935732" finalOutcome="Bid[Food: Handmade Food, Drinks: Handmade Cocktails, Location: Party Room, Invitations: Custom, Printed, Music: MP3, Cleanup: Water and Soap, ]" startingAgent="Group1@2" deadline="12s">
+<resultsOfAgent agent="Group1@2" agentDesc="example party group 1" utilspace="etc/templates/partydomain/party1_utility.xml" agentClass="ai2017.group1.Group1" finalUtility="0.7216666666666667" discountedUtility="0.7216666666666667" discount="1.0">
+</resultsOfAgent>
+<resultsOfAgent agent="Atlas3@3" agentDesc="ANAC2015-6-Atlas" utilspace="etc/templates/partydomain/party2_utility.xml" agentClass="agents.anac.y2015.Atlas3.Atlas3" finalUtility="0.9761884907982836" discountedUtility="0.9761884907982836" discount="1.0">
+</resultsOfAgent>
+</NegotiationOutcome></Tournament>
