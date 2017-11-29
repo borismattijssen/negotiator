@@ -58,11 +58,6 @@ public class Group1_Accept extends AcceptanceStrategy{
 
         double timePassed = negotiationSession.getTime();
 
-        /* Set a and b based on time left
-        if () {
-
-        }*/
-
         /* Set minimum utility based on time left */
         if (timePassed >= 0.98) {
             minimumUtility = 0.7;
@@ -80,14 +75,15 @@ public class Group1_Accept extends AcceptanceStrategy{
                 return Actions.Accept;
             }
         }
+
         /* Accept opponent bid if the utility is higher than the utility of own next bid */
         else if (((a * lastOpponentBidUtil) + b) >= nextMyBidUtil) {
-            /* insert changes to a and b based on time left and concessions level, for next deadline */
             return Actions.Accept;
         }
-        /* Accept opponent bid if the utility is above a set value */
+
+        /* Accept opponent bid if the utility is above a set value
+         * The minimumUtility is set to change over time */
         else if(lastOpponentBidUtil >= minimumUtility){
-            /* insert changes to minimum utility acceptability based on time left and concessions level, for next deadline */
             return Actions.Accept;
         }
 
