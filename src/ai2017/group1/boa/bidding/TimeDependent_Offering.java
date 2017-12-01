@@ -1,7 +1,9 @@
 package ai2017.group1.boa.bidding;
 
+import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import negotiator.bidding.BidDetails;
@@ -58,6 +60,12 @@ public class TimeDependent_Offering extends OfferingStrategy {
 			negotiationSession.setOutcomeSpace(outcomespace);
 
 			this.e = parameters.get("e");
+			Properties props = System.getProperties();
+			if(props.containsKey("parame")) {
+				this.e = Double.parseDouble(props.getProperty("parame"));
+			}
+			PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+			writer.println("Param e:" + this.e);
 
 			if (parameters.get("k") != null)
 				this.k = parameters.get("k");
@@ -68,6 +76,11 @@ public class TimeDependent_Offering extends OfferingStrategy {
 				this.Pmin = parameters.get("min");
 			else
 				this.Pmin = negoSession.getMinBidinDomain().getMyUndiscountedUtil();
+			if(props.containsKey("paramf")) {
+				this.Pmin = Double.parseDouble(props.getProperty("paramf"));
+			}
+			writer.println("Param f:" + this.Pmin);
+			writer.close();
 
 			if (parameters.get("max") != null) {
 				Pmax = parameters.get("max");

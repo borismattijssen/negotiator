@@ -21,6 +21,7 @@ import negotiator.parties.NegotiationInfo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -59,10 +60,11 @@ public class Group1 extends AbstractNegotiationParty {
 			Map<String, Double> parameters = new HashMap<String, Double>() {{
 				put("l", 0.1);
 				put("t", 1.1);
-				put("e", 10.0);
+				put("e", 0.5);
 				put("k", 0.0);
 				put("a", 1.0);
 				put("b", 0.0);
+				put("min", 0.9);
 			}};
 			this.opponentModel.init(this.negotiationSession, parameters);
 			this.omStrategy.init(this.negotiationSession, this.opponentModel, parameters);
@@ -153,9 +155,17 @@ public class Group1 extends AbstractNegotiationParty {
 //    }
     public HashMap<String, String> negotiationEnded(Bid acceptedBid) {
         try {
+            String logFolder = "log";
+            Properties props = System.getProperties();
+            if(props.containsKey("logfolder")) {
+                logFolder = props.getProperty("logfolder");
+            }
+            PrintWriter writer = new PrintWriter("logfolder.txt", "UTF-8");
+            writer.println(logFolder);
+            writer.close();
             DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
             Date date = new Date();
-            PrintWriter pw = new PrintWriter(new File("log/our_" + dateFormat.format(date) + ".csv"));
+            PrintWriter pw = new PrintWriter(new File(logFolder + "/our_" + dateFormat.format(date) + ".csv"));
             StringBuilder sb = new StringBuilder();
             for (Tuple<Double, Double> myBid : myBids) {
                 sb.append(myBid.get1());
@@ -166,6 +176,8 @@ public class Group1 extends AbstractNegotiationParty {
             pw.write(sb.toString());
             pw.close();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return null;
