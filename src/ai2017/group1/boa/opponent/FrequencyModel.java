@@ -11,7 +11,7 @@ import negotiator.issue.Value;
 import java.util.*;
 
 /**
- * Frequency model implemented as learning in class.
+ * Frequency model Group 1 2017.
  */
 public class FrequencyModel extends OpponentModel {
 
@@ -26,7 +26,7 @@ public class FrequencyModel extends OpponentModel {
 	 * Initialize the frequency opponent model
 	 *
 	 * @param negotiationSession contains all information on negotiation
-	 * @param parameters set for the frequency model. Includes the learning coefficient.
+	 * @param parameters         set for the frequency model. Includes the learning coefficient.
 	 */
 	@Override
 	public void init(NegotiationSession negotiationSession, Map<String, Double> parameters) {
@@ -36,7 +36,7 @@ public class FrequencyModel extends OpponentModel {
 
 		// Set learning coefficient from parameters. Default is 0.1
 		if (parameters != null && parameters.get("l") != null) {
-			learnCoef = parameters.get("l");
+			this.learnCoef = parameters.get("l");
 		}
 	}
 
@@ -48,7 +48,7 @@ public class FrequencyModel extends OpponentModel {
 	 */
 	private void initializeOpponentModels() {
 		// Number of opponents must be set before this function are called. Therefore call this function in setter.
-		if(noOfOpponents < 1) {
+		if (noOfOpponents < 1) {
 			System.out.println("Number of opponents not set. Something's not right...");
 		}
 		// Initialize data structures to compute estimated utilities.
@@ -59,15 +59,15 @@ public class FrequencyModel extends OpponentModel {
 		List<Issue> issues = negotiationSession.getDomain().getIssues();
 
 		// Loop over opponents and create hash maps for weights, frequencies and utility.
-		for(int opponentId = 0; opponentId < noOfOpponents; opponentId++) {
+		for (int opponentId = 0; opponentId < noOfOpponents; opponentId++) {
 			// Add the opponent to the initial data structures that contain the data
 			opponentWeights.put(opponentId, new HashMap<Issue, Double>());
 			opponentFrequencies.put(opponentId, new HashMap<Issue, HashMap<Value, Double>>());
 			opponentUtilities.put(opponentId, new HashMap<Issue, HashMap<Value, Double>>());
 
 			// Loop over issues to initialize these in opponentWeights, Frequencies, and utilities
-			for(Issue issue : issues) {
-				if(!opponentWeights.get(opponentId).containsKey(issue)) {
+			for (Issue issue : issues) {
+				if (!opponentWeights.get(opponentId).containsKey(issue)) {
 					double initialWeight = 1D / (double) issues.size();
 					opponentWeights.get(opponentId).put(issue, initialWeight);
 					opponentFrequencies.get(opponentId).put(issue, new HashMap<Value, Double>());
@@ -81,7 +81,7 @@ public class FrequencyModel extends OpponentModel {
 	 * Update our opponent model according to a new opponent bid made in the negotiations. Called on every new bid.
 	 *
 	 * @param opponentBid bid made by opponent
-	 * @param time time in the negotiation, not being used.
+	 * @param time        time in the negotiation, not being used.
 	 */
 	@Override
 	public void updateModel(Bid opponentBid, double time) {
@@ -93,9 +93,7 @@ public class FrequencyModel extends OpponentModel {
 		}
 
 		int opponentId = (negotiationSession.getOpponentBidHistory().size() - 1) % noOfOpponents;
-
 		// Fetch current and previous bids from opponent.
-		// TODO: Maybe we can fetch the opponent bid details in an easier way? Not sure if this actually gives us the correct bid details.
 		BidDetails curOppBidDetails = negotiationSession.getOpponentBidHistory().getHistory()
 				.get(negotiationSession.getOpponentBidHistory().size() - 1);
 		BidDetails prevOppBidDetails = negotiationSession.getOpponentBidHistory().getHistory()
@@ -109,10 +107,10 @@ public class FrequencyModel extends OpponentModel {
 	/**
 	 * Update the issue weights to represent what is most important to the opponent.
 	 *
-	 * @param opponentId the opponent who made the current bid
+	 * @param opponentId  the opponent who made the current bid
 	 * @param opponentBid the bid made by this opponent
-	 * @param current bid details of opponent bid
-	 * @param previous bid details of previous opponent bid
+	 * @param current     bid details of opponent bid
+	 * @param previous    bid details of previous opponent bid
 	 */
 	private void updateWeights(int opponentId, Bid opponentBid, BidDetails current, BidDetails previous) {
 		// For each issue, increment the weight of the the issue if it is the same as that of the previous bid.
@@ -120,7 +118,7 @@ public class FrequencyModel extends OpponentModel {
 			// Get the current weight
 			double issueWeight = opponentWeights.get(opponentId).get(issue);
 			// Check if it is unchanged
-			if(current.getBid().getValue(issue.getNumber()).equals(previous.getBid().getValue(issue.getNumber()))) {
+			if (current.getBid().getValue(issue.getNumber()).equals(previous.getBid().getValue(issue.getNumber()))) {
 				// If indeed unchanged, update weight with learning coefficient.
 				opponentWeights.get(opponentId).put(issue, issueWeight + learnCoef);
 			}
@@ -140,14 +138,14 @@ public class FrequencyModel extends OpponentModel {
 	/**
 	 * Update the frequencies of issue values for this opponent based on opponent bid.
 	 *
-	 * @param opponentId opponent who made the bid.
+	 * @param opponentId  opponent who made the bid.
 	 * @param opponentBid bid made by opponent.
 	 */
 	private void updateFrequencies(int opponentId, Bid opponentBid) {
 		// Loop over issues and increment if some issue value was found before.
 		for (Issue issue : opponentBid.getIssues()) {
 			// Check if the value has been initialized earlier. If not, set default value of 0.
-			if(!opponentFrequencies.get(opponentId).get(issue).containsKey(opponentBid.getValue(issue.getNumber()))) {
+			if (!opponentFrequencies.get(opponentId).get(issue).containsKey(opponentBid.getValue(issue.getNumber()))) {
 				opponentFrequencies.get(opponentId).get(issue).put(opponentBid.getValue(issue.getNumber()), 0D);
 			}
 			// Increment
@@ -159,13 +157,13 @@ public class FrequencyModel extends OpponentModel {
 		for (Issue issue : opponentFrequencies.get(opponentId).keySet()) {
 			// Compute maximum frequency amongst issue values
 			double max = -1;
-			for(double frequency : opponentFrequencies.get(opponentId).get(issue).values()) {
-				if(frequency > max) {
+			for (double frequency : opponentFrequencies.get(opponentId).get(issue).values()) {
+				if (frequency > max) {
 					max = frequency;
 				}
 			}
 			// Set each value for this issue to the frequency divided by the maximum frequency in opponent utility
-			for(Value val : opponentFrequencies.get(opponentId).get(issue).keySet()) {
+			for (Value val : opponentFrequencies.get(opponentId).get(issue).keySet()) {
 				double utilityValue = opponentFrequencies.get(opponentId).get(issue).get(val) / max;
 				opponentUtilities.get(opponentId).get(issue).put(val, utilityValue);
 			}
@@ -180,25 +178,20 @@ public class FrequencyModel extends OpponentModel {
 	 */
 	@Override
 	public double getBidEvaluation(Bid bid) {
-		if(noOfOpponents == -1) {
+		if (noOfOpponents == -1) {
 			return -1;
 		}
 		// Set a total utility that estimates the average utility of all agents we play against for bid.
 		double totalUtility = 0;
 		// Loop over all opponents to estimate utility of opponent for this bid.
-		for(int opponentId = 0; opponentId < noOfOpponents; opponentId++) {
+		for (int opponentId = 0; opponentId < noOfOpponents; opponentId++) {
 			// Initialize to utility 0 and increment based on weight and frequency value.
 			double oppUtility = 0;
-			for(Issue issue : bid.getIssues()) {
+			for (Issue issue : bid.getIssues()) {
 				// If issue value is in utility mapping, increment with weight * issue value.
-				if(opponentUtilities.get(opponentId).get(issue).containsKey(bid.getValue(issue.getNumber()))) {
+				if (opponentUtilities.get(opponentId).get(issue).containsKey(bid.getValue(issue.getNumber()))) {
 					double issueValUtil = opponentUtilities.get(opponentId).get(issue).get(bid.getValue(issue.getNumber()));
 					oppUtility += opponentWeights.get(opponentId).get(issue) * issueValUtil;
-				}
-				// Otherwise increment with 0 or an expected value ???
-				else {
-					// TODO: If not set for utils, what value to pick? 0.5 ??
-					oppUtility += opponentWeights.get(opponentId).get(issue) * 0.5;
 				}
 			}
 			totalUtility += oppUtility;
@@ -218,7 +211,7 @@ public class FrequencyModel extends OpponentModel {
 
 	@Override
 	public String getName() {
-		return "Group 1 Frequency Model as learned in class";
+		return "Group 1 2017 Frequency Model implemented as learned in class.";
 	}
 
 	@Override
