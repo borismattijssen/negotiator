@@ -15,29 +15,16 @@ import negotiator.boaframework.OfferingStrategy;
 import negotiator.boaframework.OpponentModel;
 import negotiator.boaframework.SortedOutcomeSpace;
 
-/**
- * This is an abstract class used to implement a TimeDependentAgent Strategy
- * adapted from [1] [1] S. Shaheen Fatima Michael Wooldridge Nicholas R.
- * Jennings Optimal Negotiation Strategies for Agents with Incomplete
- * Information http://eprints.ecs.soton.ac.uk/6151/1/atal01.pdf
- * 
- * The default strategy was extended to enable the usage of opponent models.
- * 
- * Note that this agent is not fully equivalent to the theoretical model,
- * loading the domain may take some time, which may lead to the agent skipping
- * the first bid. A better implementation is GeniusTimeDependent_Offering.
- */
-public class TimeDependent_Offering extends OfferingStrategy {
 
-	/**
-	 * k in [0, 1]. For k = 0 the agent starts with a bid of maximum utility
-	 */
+/**
+ * Bidding strategy Group 1 2017.
+ */
+public class Offering extends OfferingStrategy {
+
+
 	private double k;
-	/** Maximum target utility */
 	private double Pmax;
-	/** Minimum target utility */
 	private double Pmin;
-	/** Concession factor */
 	private double e;
 
 	private double delta=0;
@@ -118,10 +105,6 @@ public class TimeDependent_Offering extends OfferingStrategy {
 		}
 		utilityGoal = p(time);
 
-		// System.out.println("[e=" + e + ", Pmin = " +
-		// BilateralAgent.round2(Pmin) + "] t = " + BilateralAgent.round2(time)
-		// + ". Aiming for " + utilityGoal);
-
 		// if there is no opponent model available
 		if (opponentModel instanceof NoModel) {
 			nextBid = negotiationSession.getOutcomeSpace().getBidNearUtility(utilityGoal);
@@ -150,7 +133,6 @@ public class TimeDependent_Offering extends OfferingStrategy {
 				}
 			}
 		}
-
 		return d;
 	}
 
@@ -175,15 +157,15 @@ public class TimeDependent_Offering extends OfferingStrategy {
 
 	/**
 	 * From [1]:
-	 * 
+	 *
 	 * A wide range of time dependent functions can be defined by varying the
 	 * way in which f(t) is computed. However, functions must ensure that 0 <=
 	 * f(t) <= 1, f(0) = k, and f(1) = 1.
-	 * 
+	 *
 	 * That is, the offer will always be between the value range, at the
 	 * beginning it will give the initial constant and when the deadline is
 	 * reached, it will offer the reservation value.
-	 * 
+	 *
 	 * For e = 0 (special case), it will behave as a Hardliner.
 	 */
 	public double f(double t) {

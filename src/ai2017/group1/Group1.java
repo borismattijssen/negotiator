@@ -1,7 +1,7 @@
 package ai2017.group1;
 
-import ai2017.group1.boa.acceptance.Group1_Accept;
-import ai2017.group1.boa.bidding.TimeDependent_Offering;
+import ai2017.group1.boa.acceptance.Acceptance;
+import ai2017.group1.boa.bidding.Offering;
 import ai2017.group1.boa.opponent.BestBid;
 import ai2017.group1.boa.opponent.FrequencyModel;
 import list.Tuple;
@@ -28,12 +28,13 @@ import java.util.*;
 
 
 /**
- * This is your negotiation party.
+ * Group 1 negotiation agent
+ * By B. Mattijssen, R. Klip, L. Scholten & J. Rothweiler.
  */
 public class Group1 extends AbstractNegotiationParty {
 
-	protected Group1_Accept acceptConditions;
-	protected TimeDependent_Offering offeringStrategy;
+	protected Acceptance acceptConditions;
+	protected Offering offeringStrategy;
 	protected FrequencyModel opponentModel;
 	protected BestBid omStrategy;
 	protected NegotiationSession negotiationSession;
@@ -42,21 +43,28 @@ public class Group1 extends AbstractNegotiationParty {
 
     private boolean noOfOpponentsPassed = false;
 
+	/**
+	 * Initialize with negotiation session and strategies.
+	 *
+	 * @param info retrieved from GENIUS.
+	 */
 	@Override
 	public void init(NegotiationInfo info) {
-
 		super.init(info);
-
 		this.negotiationSession = new NegotiationSession(new SessionData(), this.utilitySpace, this.timeline);
 		this.initStrategies();
 	}
 
+	/**
+	 * Initialize all BOA strategies with given parameters.
+	 * Current parameters values have shown to perform best from our analysis.
+	 */
 	private void initStrategies() {
 		try {
 			opponentModel = new FrequencyModel();
 			omStrategy = new BestBid();
-			offeringStrategy = new TimeDependent_Offering();
-			acceptConditions = new Group1_Accept();
+			offeringStrategy = new Offering();
+			acceptConditions = new Acceptance();
 			Map<String, Double> parameters = new HashMap<String, Double>() {{
 				put("l", 0.1);
 				put("t", 1.1);
@@ -70,12 +78,18 @@ public class Group1 extends AbstractNegotiationParty {
 			this.omStrategy.init(this.negotiationSession, this.opponentModel, parameters);
 			this.offeringStrategy.init(this.negotiationSession, this.opponentModel, this.omStrategy, parameters);
 			this.acceptConditions.init(this.negotiationSession, this.offeringStrategy, this.opponentModel, parameters);
-		} catch (Exception var2) {
-			var2.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
-    public void receiveMessage(AgentID sender, Action opponentAction) {
+	/**
+	 * When the agent receives a message, strategies define what to do with this message.
+	 *
+	 * @param sender agent that sent the opponent action
+	 * @param opponentAction type of move made by the opponent
+	 */
+	public void receiveMessage(AgentID sender, Action opponentAction) {
 	    super.receiveMessage(sender, opponentAction);
 	    if (getNumberOfParties() != -1 && noOfOpponentsPassed == false) {
 	        offeringStrategy.setNoOfOpponents(getNumberOfParties() - 1);
@@ -107,7 +121,13 @@ public class Group1 extends AbstractNegotiationParty {
 
     }
 
-    public Action chooseAction(List<Class<? extends Action>> possibleActions) {
+	/**
+	 * Choose an action based on the offering strategy.
+	 *
+	 * @param possibleActions type of actions possible
+	 * @return actoin to take.
+	 */
+	public Action chooseAction(List<Class<? extends Action>> possibleActions) {
         BidDetails bid;
         if (this.negotiationSession.getOwnBidHistory().getHistory().isEmpty()) {
             bid = this.offeringStrategy.determineOpeningBid();
@@ -117,7 +137,7 @@ public class Group1 extends AbstractNegotiationParty {
                 return new EndNegotiation(this.getPartyId());
             }
         }
-//        myBids.put(new Double(this.timeline.getTime()).toString(), new Double(bid.getMyUndiscountedUtil()).toString());
+
         myBids.add(new Tuple<>(timeline.getTime(), bid.getMyUndiscountedUtil()));
 
         if (bid == null) {
@@ -141,19 +161,14 @@ public class Group1 extends AbstractNegotiationParty {
             }
         }
     }
-//
-//    public void endSession(NegotiationResult result) {
-//        this.offeringStrategy.endSession(result);
-//        this.acceptConditions.endSession(result);
-//        this.opponentModel.endSession(result);
-//        SessionData savedData = this.negotiationSession.getSessionData();
-//        if (!savedData.isEmpty() && savedData.isChanged()) {
-//            savedData.changesCommitted();
-//            this.getData().put(savedData);
-//        }
-//
-//    }
-    public HashMap<String, String> negotiationEnded(Bid acceptedBid) {
+
+	/**
+	 * Write out log file for analysis.
+	 *
+	 * @param acceptedBid the accepting bid ends the negotiation.
+	 * @return null
+	 */
+	public HashMap<String, String> negotiationEnded(Bid acceptedBid) {
         try {
             String logFolder = "log";
             Properties props = System.getProperties();
@@ -185,7 +200,7 @@ public class Group1 extends AbstractNegotiationParty {
 
 	@Override
 	public String getDescription() {
-		return "example party group 1";
+		return "Agent Group1 2017";
 	}
 
 }

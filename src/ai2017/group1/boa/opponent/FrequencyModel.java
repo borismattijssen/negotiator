@@ -207,15 +207,6 @@ public class FrequencyModel extends OpponentModel {
 	}
 
 	/**
-	 * Get the number of opponents were playing against.
-	 *
-	 * @return number of opponents
-	 */
-	public int getNoOfOpponents() {
-		return noOfOpponents;
-	}
-
-	/**
 	 * Set the number of opponents in our opponent model. Necessary to build the different opponent models.
 	 *
 	 * @param noOfOpponents the number of opponents as set in the opponent model.
@@ -227,13 +218,13 @@ public class FrequencyModel extends OpponentModel {
 
 	@Override
 	public String getName() {
-		return "Frequency Model as learned in class";
+		return "Group 1 Frequency Model as learned in class";
 	}
 
 	@Override
 	public Set<BOAparameter> getParameterSpec() {
 		Set<BOAparameter> set = new HashSet<BOAparameter>();
-		set.add(new BOAparameter("l", 0.2,
+		set.add(new BOAparameter("l", 0.1,
 				"The learning coefficient determines how quickly the issue weights are learned"));
 		return set;
 	}
